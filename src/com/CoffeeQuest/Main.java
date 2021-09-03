@@ -6,6 +6,5 @@ public class Main {
 	// write your code here
         //james made a change
         //Jared also made a change
-        System.out.println("Test");
     }
 }
