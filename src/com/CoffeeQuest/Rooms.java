@@ -30,4 +30,14 @@ public abstract class Rooms
      * @return the description
      */
     abstract String getDescription();
+
+    /**
+     * Event after the player successfully completes the room challenge
+     */
+    abstract void completeRoomChallenge();
+
+    /**
+     * Event after the player fails the room challenge
+     */
+    abstract void failRoomChallenge();
 }
