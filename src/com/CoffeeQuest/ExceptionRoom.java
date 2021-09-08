@@ -12,9 +12,9 @@ public class ExceptionRoom extends Rooms
 
     // Description given to player of the room
     private final String description = "As you step into the room, you hear a crunch under your feet. " +
-            "What was that? You look down only to see bugs crawling all over you feet! 'AHHH' You shake them" +
-            "off and try to run out of the door, but the door has locked behind you. 'How do I get out of here?!'" +
-            "There has to be a way to fix this bug problem.";
+            "What was that? \nYou look down only to see bugs crawling all over you feet! \n'AHHH' You shake them " +
+            "off and try to run out of the door, but the door has \nlocked behind you. \n'How do I get out of here?!'" +
+            "\nThere has to be a way to fix this bug problem.\n";
 
     @Override
     /**
