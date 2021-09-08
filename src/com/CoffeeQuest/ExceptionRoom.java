@@ -5,13 +5,13 @@ import java.util.List;
 public class ExceptionRoom extends Rooms
 {
     // Name of the room
-    private String name = "Exception Room";
+    private final String name = "Exception Room";
 
     // A list of items in the room
     private List<?> items;
 
     // Description given to player of the room
-    private String description = "As you step into the room, you hear a crunch under your feet. " +
+    private final String description = "As you step into the room, you hear a crunch under your feet. " +
             "What was that? You look down only to see bugs crawling all over you feet! 'AHHH' You shake them" +
             "off and try to run out of the door, but the door has locked behind you. 'How do I get out of here?!'" +
             "There has to be a way to fix this bug problem.";
