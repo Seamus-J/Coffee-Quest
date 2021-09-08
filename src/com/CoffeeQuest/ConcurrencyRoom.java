@@ -4,10 +4,6 @@ import java.util.List;
 
 public class ConcurrencyRoom extends Rooms
 {
-    public ConcurrencyRoom(){
-
-    };
-
     // Name of the room
     private final String name = "Concurrency Room";
 
@@ -15,10 +11,10 @@ public class ConcurrencyRoom extends Rooms
     private List<?> items;
 
     // Description given to player of the room
-    private final String description = "The lights are flickering on and off and there is a loud humming noise that" +
-            " seems to pulsing on and off. You see two generators that seem to be trying to run at the same" +
-            " time, but there doesn't seem to be enough power to keep them both going at once. How can I " +
-            "keep these lights?";
+    private final String description = "The lights are flickering on and off and there is a loud humming noise \nthat" +
+            " seems to pulsing on and off. You see two generators that seem \nto be trying to run at the same" +
+            " time, but there doesn't seem to be enough power to \nkeep them both going at once. How can I " +
+            "keep these lights?\n";
 
     @Override
     /**

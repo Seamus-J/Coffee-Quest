@@ -11,10 +11,10 @@ public class FinalExamRoom extends Rooms
     private List<?> items;
 
     // Description given to player of the room
-    private final String description = "You step inside the room, and find that it is almost completely empty nearly pitch black" +
-            ". All you see is a desk in the middle of the room with a single light bulb hanging over it " +
-            "and the silhouette of a man just beyond it. It feels ominous, what could this be? 'I hope you" +
-            " studied.' the man says. Is this a test??";
+    private final String description = "You step inside the room, and find that it is almost completely \nempty nearly pitch black" +
+            ". All you see is a desk in the middle \nof the room with a single light bulb hanging over it " +
+            "and the \nsilhouette of a man just beyond it. It feels ominous, what could this be? \n'I hope you" +
+            " studied.' the man says. \nIs this a test??\n";
 
     @Override
     /**
