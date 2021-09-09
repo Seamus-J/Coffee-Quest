@@ -4,15 +4,6 @@ import java.util.List;
 
 public abstract class Rooms
 {
-    // Name of the room
-    private String name;
-
-    // A list of items in the room
-    private List<?> items;
-
-    // Description given to player of the room
-    private String description;
-
     /**
      * gets the name of the room
      * @return the name of the room
@@ -32,12 +23,14 @@ public abstract class Rooms
     abstract String getDescription();
 
     /**
-     * Event after the player successfully completes the room challenge
+     * gets the completion status of a room
+     * @return the bool of the completion status of the room
      */
-    abstract void completeRoomChallenge();
+    abstract boolean getCompletion();
 
     /**
-     * Event after the player fails the room challenge
+     * changes the completion status of a room if the players finds the solution
+     * @param b bool the completion status will be set to
      */
-    abstract void failRoomChallenge();
+    abstract void setCompletion(boolean b);
 }

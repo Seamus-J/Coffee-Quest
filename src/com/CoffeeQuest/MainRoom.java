@@ -2,10 +2,10 @@ package com.CoffeeQuest;
 
 import java.util.List;
 
-public class FinalExamRoom extends Rooms
+public class MainRoom extends Rooms
 {
     // Name of the room
-    private final String name = "Final Exam Room";
+    private final String name = "Concurrency Room";
 
     // A list of items in the room
     private List<?> items;
@@ -14,10 +14,10 @@ public class FinalExamRoom extends Rooms
     private boolean complete = false;
 
     // Description given to player of the room
-    private final String description = "You step inside the room, and find that it is almost completely \nempty nearly pitch black" +
-            ". All you see is a desk in the middle \nof the room with a single light bulb hanging over it " +
-            "and the \nsilhouette of a man just beyond it. It feels ominous, what could this be? \n'I hope you" +
-            " studied.' the man says. \nIs this a test??\n";
+    private final String description = "The lights are flickering on and off and there is a loud humming noise \nthat" +
+            " seems to pulsing on and off. You see two generators that seem \nto be trying to run at the same" +
+            " time, but there doesn't seem to be enough power to \nkeep them both going at once. How can I " +
+            "keep these lights?\n";
 
     @Override
     /**
@@ -65,17 +65,27 @@ public class FinalExamRoom extends Rooms
     }
 
     /**
-     * Event after the player successfully completes the room challenge
+     *
+     * @param c ConcurrencyRoom
+     * @param e ExceptionRoom
+     * @param f FinalExamRoom
+     * @param i InfiniteLoopRoom
      */
-    void completeRoomChallenge() {
-        // TODO How does the player complete this room's challenge
-        //  what will happen when the player completes this room
+    public void completeRoomChallenge( ConcurrencyRoom c, ExceptionRoom e, FinalExamRoom f, InfiniteLoopRoom i) {
+
+        // If all rooms complete, set main room completion to true and allow player to complete the game
+        if (c.getCompletion() == true &&
+        e.getCompletion() == true &&
+        f.getCompletion() == true &&
+        i.getCompletion() == true){
+            this.setCompletion(true);
+        }
     }
 
     /**
      * Event after the player fails the room challenge
      */
-    void failRoomChallenge() {
+    public void failRoomChallenge() {
         // TODO How does the player fail this challenge
         //  what will happen if the player fails
     }

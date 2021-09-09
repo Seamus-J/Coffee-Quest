@@ -10,6 +10,9 @@ public class InfiniteLoopRoom extends Rooms
     // A list of items in the room
     private List<?> items;
 
+    // Boolean to keep record of whether the player has completed to room
+    private boolean complete = false;
+
     // Description given to player of the room
     private final String description = "You enter the room, it is pitch black and dead silent. You let out a 'Hello?' " +
             "The room immediately starts to echo, and it doesn't fade away. What is in here?" +
@@ -44,6 +47,23 @@ public class InfiniteLoopRoom extends Rooms
 
     @Override
     /**
+     * gets the completion status of a room
+     * @return the bool of the completion status of the room
+     */
+    public boolean getCompletion() {
+        return this.complete;
+    }
+
+    @Override
+    /**
+     * changes the completion status of a room if the players finds the solution
+     * @param b bool the completion status will be set to
+     */
+    void setCompletion(boolean b) {
+        this.complete = b;
+    }
+
+    /**
      * Event after the player successfully completes the room challenge
      */
     void completeRoomChallenge() {
@@ -51,7 +71,6 @@ public class InfiniteLoopRoom extends Rooms
         //  what will happen when the player completes this room
     }
 
-    @Override
     /**
      * Event after the player fails the room challenge
      */
