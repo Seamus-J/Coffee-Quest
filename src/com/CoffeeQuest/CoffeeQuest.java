@@ -5,5 +5,4 @@ public class CoffeeQuest {
     ExceptionRoom exceptionRoom = new ExceptionRoom();
     FinalExamRoom finalExamRoom = new FinalExamRoom();
     InfiniteLoopRoom infiniteLoopRoom = new InfiniteLoopRoom();
-
 }
