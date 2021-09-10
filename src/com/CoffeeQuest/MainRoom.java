@@ -77,8 +77,12 @@ public class MainRoom extends Rooms
         if (c.getCompletion() == true &&
         e.getCompletion() == true &&
         f.getCompletion() == true &&
-        i.getCompletion() == true){
+        i.getCompletion() == true)
+        {
+            // Completion set to true
             this.setCompletion(true);
+
+            // TODO Congratulation message on winning
         }
     }
 
