@@ -5,4 +5,6 @@ public class CoffeeQuest {
     ExceptionRoom exceptionRoom = new ExceptionRoom();
     FinalExamRoom finalExamRoom = new FinalExamRoom();
     InfiniteLoopRoom infiniteLoopRoom = new InfiniteLoopRoom();
+    MainRoom mainRoom = new MainRoom();
+    Player player = new Player(mainRoom);
 }
