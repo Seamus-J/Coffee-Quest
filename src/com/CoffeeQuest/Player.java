@@ -11,7 +11,6 @@ public class Player {
     public Player(Rooms room)
     {
         this.room = room;
-        this.inventory = new ArrayLIst<Item>();
     }
 
     //Methods
