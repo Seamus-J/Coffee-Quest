@@ -15,7 +15,5 @@ public class Main {
 				System.out.print("> ");
 				cmds.getCommands(input.nextLine());
 		}
-
-
     }
 }
