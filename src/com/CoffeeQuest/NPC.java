@@ -2,8 +2,17 @@ package com.CoffeeQuest;
 
 
 import java.io.Console;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.function.Supplier;
 
+/**
+ *
+ * Class implements the methods and fields for NPC interaction in the finalexam room. All interactions are work in progress, and are likely to be reworked/restyled.
+ *
+ * @author James Heminger
+ */
 //Npc Version 1
 public class NPC
 {
@@ -20,8 +29,10 @@ public class NPC
     //checks if this is the first attempt, effects dialog
     int firstAttempt = 0;
 
- public void main(String[] args)
- {
+
+
+ /*
+ Should be added to main method in main class //////////////////////////////////////////////////// example idea
      //add in questions
      Questions.add("What is one");
      Questions.add("What is two");
@@ -32,21 +43,28 @@ public class NPC
      Answers.add("2");
      Answers.add("3");
      Answers.add("4");
- }
+ */
 
 
-
-
+    /**
+     *
+     * The GreetPlayer() method is used in the current version of the NPC class as a way of allowing the player to choose if they want to start the quiz when they talk to the npc.
+     * It asks the player to respond with yes if they wish to begin the quiz, but does not recognize any other commands/input. This still needs to be tested to see how it works with the commands
+     * class.
+     */
      //Greet Player
      public void GreetPlayer()
      {
          //greet player
          if (firstAttempt == 0) {
-             System.out.println("QuizMaster: Hello adventurer, I' am the QuizMaster and to escape this dungeon you must answer these three questions of mine! Know that while you may try to answer a question again if you give an incorrect answer," +
-                     "you will only be allowed three incorrect answers between the three questions before you fail, and that if you fail this quiz you will not pass out of this dungeon. If you are ready to begin, then telling me a" +
-                     "simple yes shall suffice. If at any point you wish to concede, simply say quit.");
+             System.out.println("Silhouetted Man: 'Confused? Didn't you remember you that you had a quiz today? Well, don't worry about it. It's really just three short answers that you can even try to answer a second time if you get them wrong." +
+                     "You should already know that if you give three incorrect answers between the three questions you will fail the quiz, and that if you want to leave the dungeon you must pass this quiz." +
+                     "Of course you knew all of that already, after all you did study right? If you are ready to begin, then telling me a simple yes shall suffice. If there is anything else you need to do before" +
+                     "starting this quiz I suggest you go do it now.'");
+
+             firstAttempt = 1;
          } else {
-             System.out.println("QuizMaster: So you have returned? Are you prepared to try again? If so say yes.");
+             System.out.println("Silhouetted Man: 'Ah, good you back? Are you prepared to start the quiz now? If so, say yes.;");
          }
 
          //get user response
@@ -56,16 +74,30 @@ public class NPC
          if (reply1.toLowerCase() == "yes") {
              //Determine random questions
              SetupQuestions();
+
+
+             //Potential way to set a 'Due Date' for the quiz, this gets the localdatetime and sets the due date a minute after it
+             Supplier<LocalDateTime> s = LocalDateTime::now;
+             LocalDateTime dueDate = s.get().plusMinutes(1);
+             //Formating it into a more readable format
+             DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+             //displaying duedate to user
+             System.out.println("The quiz due date is " +  dueDate.format(formatTime));
              //start questioning
              AskPlayerQuestion1();
          }
          //if the player enters something other than yes then this comes up
          else {
-             System.out.println("QuizMaster: I' am not sure what you mean by " + reply1 + ". If you do wish to take my quiz then talk with me some more, otherwise I ask that you depart my chamber.");
+             System.out.println("Silhouetted Man: 'What do you mean by" + reply1 + "? If you want to start the quiz just say yes, otherwise go do whatever it is you need to do elsewhere.'");
          }
      }
 
-     //randomly determines which questions will be asked
+    /**
+     *
+     * the SetupQuestions() method sets up which questions will be used on the quiz by using random number generation to pick questions and corresponding answers from a list.
+     * While loops are used to check if the question has already been picked, and to reset it with another question if so.
+     */
+    //randomly determines which questions will be asked
      public void SetupQuestions()
      {
          //new random number generator
@@ -84,32 +116,36 @@ public class NPC
          }
      }
 
-     //Ask Player Question1
+    /**
+     *
+     * Each AskPlayerQuestion#() method works the same, and I' am considering working them into one combined method in future verisons of the NPC class.
+     * It prints the first question that was selected in the SetupQuestions() method, and uses a scanner to get the user response. It checks the response to see
+     * if it matches, this is not setup to be very forgiving, and some work needs to be put into improving its recognition of answers. It also checks to see if the user chosses to quit
+     * the quiz, and calls the quitQuiz() method in that case. Finally, if the answer is wrong it checks the number of previous wrong answers, and gives an approriate response to the number.
+     */
+
+    //Ask Player Question1
      public void AskPlayerQuestion1()
      {
          //prints the first question
-         System.out.println("QuizMaster: Here is my first question for you, try to pass it if you dare." + Questions.get(q1));
-
+         System.out.println("Silhouetted Man: 'Here is the first question.'" + Questions.get(q1));
 
          //get user response
          String answer1 = scanner.nextLine();
          //if the user response is correct
          if (answer1.toLowerCase() == Answers.get(q1)) {
-             System.out.println("QuizMaster: You have answered my first question correctly, though I imagine was purely through luck. My next question will not be so easy.");
+             System.out.println("Silhouetted Man: 'Good answer, you might actually have a slight chance to escape.'");
              AskPlayerQuestion2();
          }
-         //if the player chooses to quit
-         else if (answer1.toLowerCase() == "quit") {
-             quitQuiz();
-         }
+
          //if the user answer incorrectly for the first time
          else if (incorrectAnswers == 0) {
-             System.out.println("QuizMaster: Your first wrong answer! Give it another shot.");
+             System.out.println("Silhouetted Man: 'That was your first wrong answer! You should give it another shot.'");
              incorrectAnswers++;
          }
          //second incorrect user response
          else if (incorrectAnswers == 1) {
-             System.out.println("QuizMasterAnother wrong answer! That makes 2 of 3! This will over soon enough, but you are welcome to try again.");
+             System.out.println("Silhouetted Man: 'That was another wrong answer! That makes 2 of your limit of 3!' ");
              incorrectAnswers++;
          }
          //Third incorrect response results in quiz failure
@@ -119,32 +155,32 @@ public class NPC
 
      }
 
-     //Ask Player Question2
+    /**
+     *
+     * essentially the same as AskPlayerQuestion1()
+     */
+    //Ask Player Question2
      public void AskPlayerQuestion2()
      {
          //prints the second question
-         System.out.println(Questions.get(q2));
+         System.out.println("Silhouetted Man: 'On too the second question then.' " + Questions.get(q2));
 
          //get user response
          String answer2 = scanner.nextLine();
          //if the user response is correct
          if (answer2.toLowerCase() == Answers.get(q2)) {
-             System.out.println("QuizMaster: You have done well in my quiz up to now. Yes you have gotten the second question right, but in truth I have been going easy on you so far, " +
-                     "but surely you shall fail now that I no longer do so.");
+             System.out.println("Silhouetted Man: 'Another good answer. Maybe I will finally get to see what happens when somebody passes this quiz.'");
+
              AskPlayerQuestion3();
-         }
-         //if the player chooses to quit
-         else if (answer2.toLowerCase() == "quit") {
-             quitQuiz();
          }
          //if the user answer incorrectly for the first time
          else if (incorrectAnswers == 0) {
-             System.out.println("QuizMaster: Your first wrong answer! Give it another shot.");
+             System.out.println("Silhouetted Man: 'That was your first wrong answer! You should give it another shot.'");
              incorrectAnswers++;
          }
          //second incorrect user response
          else if (incorrectAnswers == 1) {
-             System.out.println("QuizMaster: Another wrong answer! That makes 2 of 3! This will over soon enough, but you are welcome to try again.");
+             System.out.println("Silhouetted Man: 'That was another wrong answer! That makes 2 of your limit of 3! '");
              incorrectAnswers++;
          }
          //Third incorrect response results in quiz failure
@@ -153,31 +189,31 @@ public class NPC
          }
      }
 
+    /**
+     *
+     * essentially the same as AskPlayerQuestion1(), accept that correctly answering in this method also calls the quizPass() method
+     */
      //Ask Player Question3
      public void AskPlayerQuestion3()
      {
          //prints the third question
-         System.out.println(Questions.get(q3));
+         System.out.println("Silhouetted Man: 'Here's the final question, In hope your ready for it." + Questions.get(q3) + "'");
 
          //get user response
          String answer3 = scanner.nextLine();
          //if the user response is correct
          if (answer3.toLowerCase() == Answers.get(q3)) {
-             System.out.println("QuizMaster: How have you done this? Up to now no one has been able to answer all three of my questions. However you may have passed my quiz, I 'am forced to allow you passage out of this dungeon.");
+             System.out.println("Silhouetted Man: 'Well this is a first, three correct answers. '");
              quizPass();
-         }
-         //if the player chooses to quit
-         else if (answer3.toLowerCase() == "quit") {
-             quitQuiz();
          }
          //if the user answer incorrectly for the first time
          else if (incorrectAnswers == 0) {
-             System.out.println("QuizMaster: Your first wrong answer! Give it another shot.");
+             System.out.println("Silhouetted Man: 'That was your first wrong answer! You should give it another shot.'");
              incorrectAnswers++;
          }
          //second incorrect user response
          else if (incorrectAnswers == 1) {
-             System.out.println("QuizMaster: Another wrong answer! That makes 2 of 3! This will over soon enough, but you are welcome to try again.");
+             System.out.println("Silhouetted Man: 'That was another wrong answer! That makes 2 of your limit of 3! '");
              incorrectAnswers++;
          }
          //Third incorrect response results in quiz failure
@@ -186,22 +222,26 @@ public class NPC
          }
      }
 
-     //called when the player answer incorrectly for the third time
+    /**
+     *
+     * This method is called when a third wrong answer is detected, and displays a failure message
+     */
+    //called when the player answer incorrectly for the third time
      public void quizFailure()
      {
-         System.out.println("QuizMaster: You have failed my quiz, as has everyone before you. If you wish to try again then you may ask me");
+         System.out.println("Silhouetted Man: 'That's unfortunate. You have just given your third and final wrong answer, and have failed the quiz.");
+         FinalExamRoom.setCompletion = false;
      }
 
-     //A method that allows the player an out if they no longer want to do the quiz, or to complete another section of the game first
-     public void quitQuiz()
-     {
-         System.out.println("QuizMaster: So you have chosen to quit my quiz? It is probably for the best, as you would not have passed it any way. Still if you wish to try again you can seek me out here.");
-     }
 
-     //this method is called when the player has successfully completed the quiz
+    /**
+     *
+     * This method will set the FinalExamRoom.setCompletion value to true when called
+     */
+    //this method is called when the player has successfully completed the quiz
      public void quizPass()
      {
-         //I' am unsure how the game should from this point, needs some work//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+         FinalExamRoom.setCompletion = true;
      }
 
 }
