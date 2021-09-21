@@ -12,13 +12,20 @@ public class Commands {
     String command = "";
     String args = "";
     Scanner input;
+    Rooms currentRoom;
 
+    /**
+     * @param userInput
+     */
     public Commands(Scanner userInput) {
         // do nothing.
         // Capture user input incase we need it.
         input = userInput;
     }
 
+    /**
+     * @param inputCommand
+     */
     public void getCommands(String inputCommand) {
         String[] cmdString = inputCommand.split("\\s");
         command = cmdString[0];
@@ -48,6 +55,9 @@ public class Commands {
         }
     }
 
+    /**
+     * @return void
+     */
     private void listCommands() {
         System.out.println("List of commands:");
         int i = 1;
@@ -60,6 +70,9 @@ public class Commands {
         System.out.println("");
     }
 
+    /**
+     * @return void
+     */
     private void quit() {
         System.out.println("Quitting game....");
         System.exit(0);

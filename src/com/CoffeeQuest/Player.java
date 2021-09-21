@@ -1,16 +1,25 @@
 package com.CoffeeQuest;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Player {
     //Private variables
     private Rooms room;
     private ArrayList<Item> inventory;
-
+    private Scanner input = new Scanner(System.in);
+    private Commands cmds = new Commands(input);
     //Constructor
     public Player(Rooms room)
     {
         this.room = room;
+
+        System.out.println("Welcome");
+        while(true) {
+            System.out.println("What do you want to do next?");
+            System.out.print("> ");
+            cmds.getCommands(input.nextLine());
+        }
     }
 
     //Methods

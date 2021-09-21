@@ -17,6 +17,7 @@ import java.util.function.Supplier;
 public class NPC
 {
     Scanner scanner = new Scanner(System.in);
+    FinalExamRoom examRoom = new FinalExamRoom();
 
     //list of possible questions, needs to b expanded with real questions
     List<String> Questions = new ArrayList<>();
@@ -230,7 +231,7 @@ public class NPC
      public void quizFailure()
      {
          System.out.println("Silhouetted Man: 'That's unfortunate. You have just given your third and final wrong answer, and have failed the quiz.");
-         FinalExamRoom.setCompletion = false;
+         examRoom.setCompletion(false);
      }
 
 
@@ -241,7 +242,7 @@ public class NPC
     //this method is called when the player has successfully completed the quiz
      public void quizPass()
      {
-         FinalExamRoom.setCompletion = true;
+         examRoom.setCompletion(true);
      }
 
 }
