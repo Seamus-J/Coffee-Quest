@@ -1,5 +1,7 @@
 package com.CoffeeQuest;
 
+import java.util.Scanner;
+
 public class CoffeeQuest {
     ConcurrencyRoom concurrencyRoom = new ConcurrencyRoom();
     ExceptionRoom exceptionRoom = new ExceptionRoom();
