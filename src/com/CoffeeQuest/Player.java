@@ -5,7 +5,7 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class Player {
-    //Private variables
+    // 2.2 --Example of encapsulation (1)--also note the public methods and use of get/set methods
     private Rooms room;
     private ArrayList<Items> inventory;
     private Scanner input = new Scanner(System.in);
@@ -13,15 +13,19 @@ public class Player {
     private String command = "";
     private String args = "";
     private Items item;
+
     //Constructor
     public Player(Rooms room)
     {
         this.room = room;
+
         // Build a new array list of an inventory when the user starts the game.
         setInventory(new ArrayList<Items>());
+
         // Print out the initial text for the user to see.
-        System.out.println("Welcome");
-        // Print out the lore and context of whats happening.
+        System.out.println("Welcome to Coffee Quest!");
+
+        // Print out the lore and context of what's happening.
         System.out.println("Insert lore here");
         while(true) {
             System.out.println("What do you want to do next?");
@@ -30,73 +34,94 @@ public class Player {
         }
     }
 
-    //Methods
-    // Commands
     /**
      * @param inputCommand
      */
-    public void getCommands(String inputCommand) {
+    public void getCommands(String inputCommand){
         String[] cmdString = inputCommand.split("\\s");
-        command = cmdString[0];
-        args = cmdString[1];
-        switch(command.toLowerCase(Locale.ROOT)) {
-            case "help":
-                if(args != "") {
-                    System.out.println(command + args);
-                } else {
-                    cmds.listCommands();
-                }
-                break;
-            case "quit": cmds.quit();
-                break;
-            case "where am i": // Setup where am I command
-                // TODO: Repeat where the user moved to.
-                room.getDescription();
-                break;
-            case "use":
-                //TODO: Find a way to use an item of class Item.
-                item = cmds.getItem(args);
-                use(item);
-                break;
-            case "drop":
-                // TODO: Find a way to drop an item of class Item.
-                item = cmds.getItem(args);
-                drop(item);
-                break;
-            case "move":
-                // TODO: Find a way to move to another room
-                // TODO: Based off which room they are in, give them a set of directions they can go. IE, make sure they can't go west if there is no door to the west.
-                if(args.toLowerCase(Locale.ROOT) == "north") {
 
-                } else if(args.toLowerCase(Locale.ROOT) == "south") {
+        if(cmdString.length ==1  && cmdString[0].equals("help"))
+        {
+            cmds.listCommands();
+        }
+        else if(cmdString.length ==1 && cmdString[0].equals("quit"))
+        {
+            cmds.quit();
+        }
+        else
+        {
+            command = cmdString[0];
+            args = cmdString[1];
 
-                } else if(args.toLowerCase(Locale.ROOT) == "east") {
+            switch(command.toLowerCase(Locale.ROOT)) {
+//            case "help":
+//                if(args != "") {
+//                    System.out.println(command + args);
+//                } else {
+//                    cmds.listCommands();
+//                }
+//                break;
+//            case "quit": cmds.quit();
+//                break;
+                case "look": // Setup where am I command
+                    // TODO: Repeat where the user moved to.
+                    System.out.println(room.getDescription());
+                    break;
+                case "use":
+                    //TODO: Find a way to use an item of class Item.
+                    item = cmds.getItem(args);
+                    use(item);
+                    break;
+                case "drop":
+                    // TODO: Find a way to drop an item of class Item.
+                    item = cmds.getItem(args);
+                    drop(item);
+                    break;
+                case "move":
+                    // TODO: Find a way to move to another room
+                    // TODO: Based off which room they are in, give them a set of directions they can go. IE, make sure they can't go west if there is no door to the west.
+                    if(args.toLowerCase(Locale.ROOT) == "north") {
 
-                } else if(args.toLowerCase(Locale.ROOT) == "west") {
+                    } else if(args.toLowerCase(Locale.ROOT) == "south") {
 
-                }
-                break;
-            case "talk":
-                // TODO: Find a way to talk to an NPC
-                break;
-            case "pickup":
-                // TODO: Find a way to pick up an item of class Item
-                item = cmds.getItem(args);
-                pickUp(item);
-                break;
-            case "whatis":
-                item = cmds.getItem(args);
-                System.out.println(item.getName() + " is " + item.getDescription());
-                break;
-            case "inventory":
+                    } else if(args.toLowerCase(Locale.ROOT) == "east") {
+
+                    } else if(args.toLowerCase(Locale.ROOT) == "west") {
+
+                    }
+                    break;
+                case "talk":
+                    // TODO: Find a way to talk to an NPC
+                    break;
+                case "pickup":
+                    // TODO: Find a way to pick up an item of class Item
+                    item = cmds.getItem(args);
+                    pickUp(item);
+                    break;
+                case "whatis":
+                    item = cmds.getItem(args);
+                    System.out.println(item.getName() + " is " + item.getDescription());
+                    break;
+                case "inventory":
 //              Return all the items in the inventory.
 //              Big brain move right here.... - Billy ;)
-                System.out.println("You have: ");
-                getInventory().forEach(i -> i.getName());
-                break;
-            default: System.out.println("Didn't understand that command");
+                    System.out.println("You have: ");
+                    getInventory().forEach(i -> i.getName());
+                    break;
+                default: System.out.println("Didn't understand that command");
+            }
         }
-    }
+        }
+
+//        try{
+//            command = cmdString[0];
+//            args = cmdString[1];
+//        }
+//        catch(ArrayIndexOutOfBoundsException exception){
+//            System.out.println("Both an argument and command are needed");
+//        }
+
+
 
     //Pick-up an item
     private void pickUp(Items item)
