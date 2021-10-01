@@ -16,7 +16,7 @@ public class InfiniteLoopRoom extends Rooms
     // Description given to player of the room
     private final String description = "You enter the room, it is pitch black and dead silent. You let out a 'Hello?' " +
             "The room immediately starts to echo, and it doesn't fade away. What is in here?" +
-            " Is this going to go on forever??";
+            " Why won't the echo stop? Is this going to go on forever??";
 
     @Override
     /**

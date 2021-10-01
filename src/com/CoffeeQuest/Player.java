@@ -67,6 +67,12 @@ public class Player {
                 // TODO: Find a way to move to another room
                 // TODO: Based off which room they are in, give them a set of directions they can go. IE, make sure they can't go west if there is no door to the west.
                 if(args.toLowerCase(Locale.ROOT) == "north") {
+                    if (this.room.getName() == "Main Room"){
+                        this.room = Main.cfq.infiniteLoopRoom;
+                        System.out.println("You cautiously start to step forwards to the north down a long hallway that never seems to end00 \n." +
+                                "You finally reach a giant metal door, it looks heavy but you attempt to push it open.");
+                        this.room.getDescription();
+                    }
 
                 } else if(args.toLowerCase(Locale.ROOT) == "south") {
 
