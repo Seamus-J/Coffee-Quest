@@ -2,26 +2,31 @@ package com.CoffeeQuest;
 
 import java.util.ArrayList;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Player {
-    //Private variables
+    // 2.2 --Example of encapsulation (1)--also note the public methods and use of get/set methods
     private Rooms room;
     private ArrayList<Items> inventory;
     private Scanner input = new Scanner(System.in);
     private Commands cmds = new Commands();
+    private String command = "";
+    private String args = "";
     private Items item;
+
     //Constructor
     public Player(Rooms room)
     {
         this.room = room;
+
         // Build a new array list of an inventory when the user starts the game.
         setInventory(new ArrayList<Items>());
+
+        // Print out the initial text for the user to see.
+        System.out.println("Welcome to Coffee Quest!");
+
         // Print out the lore and context of what's happening.
-        System.out.println("\n\nWelcome to Coffee Quest! The text-based adventure game that leads you through trials and tribulations\n" +
-                "that you have to overcome in order to escape the perilous dungeons of the Java Master.\n\n" +
-                "type 'help' for a list of commands\n");
+        System.out.println("Insert lore here");
         while(true) {
             System.out.println("What do you want to do next?");
             System.out.print("> ");
@@ -30,151 +35,93 @@ public class Player {
     }
 
     /**
-     * This method gets the user input and splits it into commands for the switch statement
-     * and args for the if conditions
      * @param inputCommand
      */
-    public void getCommands(String inputCommand) {
-        String command = "";
-        String args = "";
+    public void getCommands(String inputCommand){
         String[] cmdString = inputCommand.split("\\s");
-        command = cmdString[0];
 
-        // Validation for if the user entered only one word
-        if (cmdString.length > 1){
-            args = cmdString[1];
+        if(cmdString.length ==1  && cmdString[0].equals("help"))
+        {
+            cmds.listCommands();
         }
+        else if(cmdString.length ==1 && cmdString[0].equals("quit"))
+        {
+            cmds.quit();
+        }
+        else
+        {
+            command = cmdString[0];
+            args = cmdString[1];
 
-        switch(command.toLowerCase(Locale.ROOT)) {
-            case "help":
-                if(!Objects.equals(args, "")) {
-                    System.out.println(command + args);
-                } else {
-                    cmds.listCommands();
-                }
-                break;
-            case "quit": cmds.quit();
-                break;
-            case "where am i": // Setup where am I command
-                // TODO: Repeat where the user moved to.
-                room.getDescription();
-                break;
-            case "use":
-                //TODO: Find a way to use an item of class Item.
-                item = cmds.getItem(args);
-                use(item);
-                break;
-            case "drop":
-                // TODO: Find a way to drop an item of class Item.
-                item = cmds.getItem(args);
-                drop(item);
-                break;
-            case "move":
-                switch (args.toLowerCase(Locale.ROOT)) {
-                    case "north":
+            switch(command.toLowerCase(Locale.ROOT)) {
+//            case "help":
+//                if(args != "") {
+//                    System.out.println(command + args);
+//                } else {
+//                    cmds.listCommands();
+//                }
+//                break;
+//            case "quit": cmds.quit();
+//                break;
+                case "look": // Setup where am I command
+                    // TODO: Repeat where the user moved to.
+                    System.out.println(room.getDescription());
+                    break;
+                case "use":
+                    //TODO: Find a way to use an item of class Item.
+                    item = cmds.getItem(args);
+                    use(item);
+                    break;
+                case "drop":
+                    // TODO: Find a way to drop an item of class Item.
+                    item = cmds.getItem(args);
+                    drop(item);
+                    break;
+                case "move":
+                    // TODO: Find a way to move to another room
+                    // TODO: Based off which room they are in, give them a set of directions they can go. IE, make sure they can't go west if there is no door to the west.
+                    if(args.toLowerCase(Locale.ROOT) == "north") {
 
-                        // If the player is in the main room
-                        if (Objects.equals(this.room.getName(), "Main Room")) {
+                    } else if(args.toLowerCase(Locale.ROOT) == "south") {
 
-                            // If all other room challanges have been completed
-                            if (CoffeeQuest.infiniteLoopRoom.getCompletion() &&
-                                    CoffeeQuest.concurrencyRoom.getCompletion() &&
-                                    CoffeeQuest.exceptionRoom.getCompletion()) {
+                    } else if(args.toLowerCase(Locale.ROOT) == "east") {
 
-                                // Set player room to final exam room
-                                setRoom(CoffeeQuest.finalExamRoom);
+                    } else if(args.toLowerCase(Locale.ROOT) == "west") {
 
-                                System.out.println(this.room.getDescription());
-                            } else {
-                                System.out.println(CoffeeQuest.finalExamRoom.getDescription());
-                            }
-                        } else if (this.room.getName() == "Concurrency Room") {
-                            System.out.println("\nYou can't take the flashing lights anymore and return to the main room");
-                            setRoom(CoffeeQuest.mainRoom);
-                        } else {
-                            System.out.println("\nThere is nothing in that direction");
-                        }
-                        break;
-                    case "south":
-
-                        // If the player is in the main room
-                        if (Objects.equals(this.room.getName(), "Main Room")) {
-
-                            // Set the players room to the concurrency room
-                            setRoom(CoffeeQuest.concurrencyRoom);
-
-                            System.out.println(this.room.getDescription());
-                        } else {
-                            System.out.println("\nThere is nothing in that direction");
-                        }
-
-                        break;
-                    case "east":
-
-                        // If the player is in the main room
-                        if (Objects.equals(this.room.getName(), "Main Room")) {
-
-                            // Set the players room to the exception room
-                            setRoom(CoffeeQuest.exceptionRoom);
-
-                            System.out.println(this.room.getDescription());
-                        } else if (Objects.equals(this.room.getName(), "Infinite Loop")) {
-                            System.out.println("\nYou can't take it anymore, you cover your ears and return to the main room.");
-                            setRoom(CoffeeQuest.mainRoom);
-                        } else {
-                            System.out.println("\nThere is nothing in that direction");
-                        }
-
-                        break;
-                    case "west":
-
-                        // If the player is in the main room
-                        if (Objects.equals(this.room.getName(), "Main Room")) {
-
-                            // Set the players room to the infinite loop room
-                            setRoom(CoffeeQuest.infiniteLoopRoom);
-                            System.out.println(this.room.getDescription());
-                        } else if (Objects.equals(this.room.getName(), "Exception Room")) {
-                            System.out.println("\nYou rush out the door and down the path back into the main room.");
-                            setRoom(CoffeeQuest.mainRoom);
-                        } else {
-                            System.out.println("\nThere is nothing in that direction");
-                        }
-                        break;
-                }
-                break;
-            case "talk":
-                // TODO: Find a way to talk to an NPC
-                break;
-            case "pickup":
-                // TODO: Find a way to pick up an item of class Item
-                item = cmds.getItem(args);
-                pickUp(item);
-                break;
-            case "whatis":
-                item = cmds.getItem(args);
-                System.out.println(item.getName() + " is " + item.getDescription());
-                break;
-            case "inventory":
+                    }
+                    break;
+                case "talk":
+                    // TODO: Find a way to talk to an NPC
+                    break;
+                case "pickup":
+                    // TODO: Find a way to pick up an item of class Item
+                    item = cmds.getItem(args);
+                    pickUp(item);
+                    break;
+                case "whatis":
+                    item = cmds.getItem(args);
+                    System.out.println(item.getName() + " is " + item.getDescription());
+                    break;
+                case "inventory":
 //              Return all the items in the inventory.
 //              Big brain move right here.... - Billy ;)
-                System.out.println("You have: ");
-                getInventory().forEach(i -> i.getName());
-                break;
-            default: System.out.println("Didn't understand that command");
+                    System.out.println("You have: ");
+                    getInventory().forEach(i -> i.getName());
+                    break;
+                default: System.out.println("Didn't understand that command");
+            }
         }
-    }
+        }
 
-    /**
-     * This method intakes the players commands
-     */
-    public void input() {
-        while (true) {
-            System.out.println("What do you want to do next?");
-            System.out.print("> ");
-            getCommands(input.nextLine());
-        }
-    }
+//        try{
+//            command = cmdString[0];
+//            args = cmdString[1];
+//        }
+//        catch(ArrayIndexOutOfBoundsException exception){
+//            System.out.println("Both an argument and command are needed");
+//        }
+
+
 
     //Pick-up an item
     private void pickUp(Items item)

@@ -9,7 +9,7 @@ package com.CoffeeQuest;
 public class Commands {
 //    Create item array
 //    Items itemsArray = {};
-    String[] commands = {"help", "move", "talk", "pickup", "use", "drop", "quit", "where am i"};
+    String[] commands = {"help", "move", "talk", "pickup", "use", "drop", "quit", "look"};
     String[] commandDescription = {"Get this list", "Move to the selected room.", "Talk to an NPC", "Pickup an item", "Use a selected Item", "Drop an item", "Quit the game", "Gives brief description of surroundings"};
     Rooms currentRoom;
 
