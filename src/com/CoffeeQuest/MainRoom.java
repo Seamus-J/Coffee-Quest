@@ -5,7 +5,7 @@ import java.util.List;
 public class MainRoom extends Rooms
 {
     // Name of the room
-    private final String name = "Concurrency Room";
+    private final String name = "Main Room";
 
     // A list of items in the room
     private List<?> items;
