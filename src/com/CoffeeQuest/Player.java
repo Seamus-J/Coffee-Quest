@@ -19,10 +19,10 @@ public class Player {
         this.room = room;
         // Build a new array list of an inventory when the user starts the game.
         setInventory(new ArrayList<Items>());
-        // Print out the initial text for the user to see.
-        System.out.println("Welcome");
-        // Print out the lore and context of whats happening.
-        System.out.println("Insert lore here");
+        // Print out the lore and context of what's happening.
+        System.out.println("\n\nWelcome to Coffee Quest! The text-based adventure game that leads you through trials and tribulations\n" +
+                "that you have to overcome in order to escape the perilous dungeons of the Java Master.\n\n" +
+                "type 'help' for a list of commands\n");
         while(true) {
             System.out.println("What do you want to do next?");
             System.out.print("> ");
@@ -30,8 +30,6 @@ public class Player {
         }
     }
 
-    //Methods
-    // Commands
     /**
      * @param inputCommand
      */
@@ -66,7 +64,7 @@ public class Player {
             case "move":
                 // TODO: Find a way to move to another room
                 // TODO: Based off which room they are in, give them a set of directions they can go. IE, make sure they can't go west if there is no door to the west.
-                if(args.toLowerCase(Locale.ROOT) == "north") {
+                if(args.toLowerCase(Locale.ROOT).equals("north")) {
 
                     // If the player is in the main room
                     if (this.room.getName() == "Main Room"){
