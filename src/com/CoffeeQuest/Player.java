@@ -67,19 +67,99 @@ public class Player {
                 // TODO: Find a way to move to another room
                 // TODO: Based off which room they are in, give them a set of directions they can go. IE, make sure they can't go west if there is no door to the west.
                 if(args.toLowerCase(Locale.ROOT) == "north") {
+
+                    // If the player is in the main room
                     if (this.room.getName() == "Main Room"){
-                        this.room = Main.cfq.infiniteLoopRoom;
+
+                        // If all other room challanges have been completed
+                        if (Main.cfq.infiniteLoopRoom.getCompletion()&&
+                        Main.cfq.concurrencyRoom.getCompletion()&&
+                        Main.cfq.exceptionRoom.getCompletion()){
+
+                            // Set player room to final exam room
+                            setRoom(Main.cfq.finalExamRoom);
+
+                            System.out.println("You approach a giant set of stairs littered with skulls and bones from the unfortunate souls who were here before.\n" +
+                                    "There are flaming torches leading the way that light up the massive red door awaits on top. It almost looks too heavy to open.\n" +
+                                    "You maneuver around the corpses, its like you can hear the whispers of the dead warning you, 'Save Yourself'\n" +
+                                    "It frightens you but you have escape some how. You continue until you approach the door. You give it a nudge but it doesn't budge.\n" +
+                                    "You put all of your force into, letting out a yell. Finally it starts to creak open.");
+                            this.room.getDescription();
+                        }
+                        else if (this.room.getName() == "Concurrency Room"){
+                            System.out.println("You can't take the flashing lights anymore and return to the main room");
+                            setRoom(Main.cfq.mainRoom);
+                        }
+                        else
+                        {
+                            System.out.println("You approach a giant set of stairs littered with skulls and bones from the unfortunate souls who were here before.\n" +
+                                    "There are flaming torches leading the way that light up the massive red door awaits on top. It almost looks too heavy to open.\n" +
+                                    "You maneuver around the corpses, its like you can hear the whispers of the dead warning you, 'Save Yourself'\n" +
+                                    "It frightens you but you have escape some how. You continue until you approach the door. You give it a nudge but it doesn't budge.\n" +
+                                    "You put all of your force into, but it seems to be locked. 'Maybe I should check the other rooms first.' You return to the main room");
+                        }
+                    }
+                    else
+                    {
+                        System.out.println("There is nothing in that direction");
+                    }
+                } else if(args.toLowerCase(Locale.ROOT) == "south") {
+
+                    // If the player is in the main room
+                    if (this.room.getName() == "Main Room"){
+
+                        // Set the players room to the concurrency room
+                        setRoom(Main.cfq.concurrencyRoom);
+
+                        System.out.println("You head towards the tunnel to the east. The tunnel seems to be flashing as if someone was turning on and off a light.\n" +
+                                "'Is someone down there?' you yell, but there is no response. As you get closer you hear the faint hum of a machine.\n" +
+                                "You finally reach the wooden door where this all coming from and open the door.");
+                        this.room.getDescription();
+                    }
+                    else{
+                        System.out.println("There is nothing in that direction");
+                    }
+
+                } else if(args.toLowerCase(Locale.ROOT) == "east") {
+
+                    // If the player is in the main room
+                    if (this.room.getName() == "Main Room"){
+
+                        // Set the players room to the exception room
+                        setRoom(Main.cfq.exceptionRoom);
+
+                        System.out.println("You head down a path covered in spider webs.\n" +
+                                "'I hate bugs' you say to yourself\n" +
+                                "You can barely see but you navigate your through. 'It seems like the walls moving.'" +
+                                "You reach the end and go through the doorway.");
+                        this.room.getDescription();
+                    }
+                    else if (this.room.getName() == "Infinite Loop"){
+                        System.out.println("You can't take it anymore, you cover your ears and return to the main room.");
+                        setRoom(Main.cfq.mainRoom);
+                    }
+                    else{
+                        System.out.println("There is nothing in that direction");
+                    }
+
+                } else if(args.toLowerCase(Locale.ROOT) == "west") {
+
+                    // If the player is in the main room
+                    if (this.room.getName() == "Main Room"){
+
+                        // Set the players room to the infinite loop room
+                        setRoom(Main.cfq.infiniteLoopRoom);
                         System.out.println("You cautiously start to step forwards to the north down a long hallway that never seems to end00 \n." +
                                 "You finally reach a giant metal door, it looks heavy but you attempt to push it open.");
                         this.room.getDescription();
                     }
-
-                } else if(args.toLowerCase(Locale.ROOT) == "south") {
-
-                } else if(args.toLowerCase(Locale.ROOT) == "east") {
-
-                } else if(args.toLowerCase(Locale.ROOT) == "west") {
-
+                    else if (this.room.getName() == "Exception Room"){
+                        System.out.println("You rush out the door and down the path back into the main room.");
+                        setRoom(Main.cfq.mainRoom);
+                    }
+                    else {
+                        System.out.println("There is nothing in that direction");
+                    }
                 }
                 break;
             case "talk":
