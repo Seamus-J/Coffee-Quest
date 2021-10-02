@@ -29,6 +29,8 @@ public class Player {
     }
 
     /**
+     * This method gets the user input and splits it into commands for the switch statement
+     * and args for the if conditions
      * @param inputCommand
      */
     public void getCommands(String inputCommand) {
@@ -67,8 +69,6 @@ public class Player {
                 drop(item);
                 break;
             case "move":
-                // TODO: Find a way to move to another room
-                // TODO: Based off which room they are in, give them a set of directions they can go. IE, make sure they can't go west if there is no door to the west.
                 if(args.toLowerCase(Locale.ROOT).equals("north")) {
 
                     // If the player is in the main room
@@ -118,6 +118,10 @@ public class Player {
                                 "'Is someone down there?' you yell, but there is no response. As you get closer you hear the faint hum of a machine.\n" +
                                 "You finally reach the wooden door where this all coming from and open the door.");
                         System.out.println(this.room.getDescription());
+                    }
+                    else if (this.room.getName() == "Concurrency Room"){
+                        System.out.println("YThe flashing lights are too much for you, you return to the main room.");
+                        setRoom(CoffeeQuest.mainRoom);
                     }
                     else{
                         System.out.println("There is nothing in that direction");
