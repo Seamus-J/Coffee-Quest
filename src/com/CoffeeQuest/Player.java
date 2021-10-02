@@ -36,7 +36,12 @@ public class Player {
         String args = "";
         String[] cmdString = inputCommand.split("\\s");
         command = cmdString[0];
-        args = cmdString[1];
+
+        // Validation for if the user entered only one word
+        if (cmdString.length > 1){
+            args = cmdString[1];
+        }
+
         switch(command.toLowerCase(Locale.ROOT)) {
             case "help":
                 if(args != "") {
