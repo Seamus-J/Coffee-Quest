@@ -184,6 +184,17 @@ public class Player {
         }
     }
 
+    /**
+     * This method intakes the players commands
+     */
+    public void input() {
+        while (true) {
+            System.out.println("What do you want to do next?");
+            System.out.print("> ");
+            getCommands(input.nextLine());
+        }
+    }
+
     //Pick-up an item
     private void pickUp(Items item)
     {
