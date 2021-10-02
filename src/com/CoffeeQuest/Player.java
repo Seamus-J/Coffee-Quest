@@ -10,8 +10,6 @@ public class Player {
     private ArrayList<Items> inventory;
     private Scanner input = new Scanner(System.in);
     private Commands cmds = new Commands();
-    private String command = "";
-    private String args = "";
     private Items item;
     //Constructor
     public Player(Rooms room)
@@ -34,6 +32,8 @@ public class Player {
      * @param inputCommand
      */
     public void getCommands(String inputCommand) {
+        String command = "";
+        String args = "";
         String[] cmdString = inputCommand.split("\\s");
         command = cmdString[0];
         args = cmdString[1];
@@ -70,23 +70,23 @@ public class Player {
                     if (this.room.getName() == "Main Room"){
 
                         // If all other room challanges have been completed
-                        if (Main.cfq.infiniteLoopRoom.getCompletion()&&
-                        Main.cfq.concurrencyRoom.getCompletion()&&
-                        Main.cfq.exceptionRoom.getCompletion()){
+                        if (CoffeeQuest.infiniteLoopRoom.getCompletion()&&
+                        CoffeeQuest.concurrencyRoom.getCompletion()&&
+                        CoffeeQuest.exceptionRoom.getCompletion()){
 
                             // Set player room to final exam room
-                            setRoom(Main.cfq.finalExamRoom);
+                            setRoom(CoffeeQuest.finalExamRoom);
 
                             System.out.println("You approach a giant set of stairs littered with skulls and bones from the unfortunate souls who were here before.\n" +
                                     "There are flaming torches leading the way that light up the massive red door awaits on top. It almost looks too heavy to open.\n" +
                                     "You maneuver around the corpses, its like you can hear the whispers of the dead warning you, 'Save Yourself'\n" +
                                     "It frightens you but you have escape some how. You continue until you approach the door. You give it a nudge but it doesn't budge.\n" +
                                     "You put all of your force into, letting out a yell. Finally it starts to creak open.");
-                            this.room.getDescription();
+                            System.out.println(this.room.getDescription());
                         }
                         else if (this.room.getName() == "Concurrency Room"){
                             System.out.println("You can't take the flashing lights anymore and return to the main room");
-                            setRoom(Main.cfq.mainRoom);
+                            setRoom(CoffeeQuest.mainRoom);
                         }
                         else
                         {
@@ -101,59 +101,59 @@ public class Player {
                     {
                         System.out.println("There is nothing in that direction");
                     }
-                } else if(args.toLowerCase(Locale.ROOT) == "south") {
+                } else if(args.toLowerCase(Locale.ROOT).equals("south")) {
 
                     // If the player is in the main room
                     if (this.room.getName() == "Main Room"){
 
                         // Set the players room to the concurrency room
-                        setRoom(Main.cfq.concurrencyRoom);
+                        setRoom(CoffeeQuest.concurrencyRoom);
 
                         System.out.println("You head towards the tunnel to the east. The tunnel seems to be flashing as if someone was turning on and off a light.\n" +
                                 "'Is someone down there?' you yell, but there is no response. As you get closer you hear the faint hum of a machine.\n" +
                                 "You finally reach the wooden door where this all coming from and open the door.");
-                        this.room.getDescription();
+                        System.out.println(this.room.getDescription());
                     }
                     else{
                         System.out.println("There is nothing in that direction");
                     }
 
-                } else if(args.toLowerCase(Locale.ROOT) == "east") {
+                } else if(args.toLowerCase(Locale.ROOT).equals("east")) {
 
                     // If the player is in the main room
                     if (this.room.getName() == "Main Room"){
 
                         // Set the players room to the exception room
-                        setRoom(Main.cfq.exceptionRoom);
+                        setRoom(CoffeeQuest.exceptionRoom);
 
                         System.out.println("You head down a path covered in spider webs.\n" +
                                 "'I hate bugs' you say to yourself\n" +
                                 "You can barely see but you navigate your through. 'It seems like the walls moving.'" +
                                 "You reach the end and go through the doorway.");
-                        this.room.getDescription();
+                        System.out.println(this.room.getDescription());
                     }
                     else if (this.room.getName() == "Infinite Loop"){
                         System.out.println("You can't take it anymore, you cover your ears and return to the main room.");
-                        setRoom(Main.cfq.mainRoom);
+                        setRoom(CoffeeQuest.mainRoom);
                     }
                     else{
                         System.out.println("There is nothing in that direction");
                     }
 
-                } else if(args.toLowerCase(Locale.ROOT) == "west") {
+                } else if(args.toLowerCase(Locale.ROOT).equals("west")) {
 
                     // If the player is in the main room
                     if (this.room.getName() == "Main Room"){
 
                         // Set the players room to the infinite loop room
-                        setRoom(Main.cfq.infiniteLoopRoom);
+                        setRoom(CoffeeQuest.infiniteLoopRoom);
                         System.out.println("You cautiously start to step forwards to the north down a long hallway that never seems to end00 \n." +
                                 "You finally reach a giant metal door, it looks heavy but you attempt to push it open.");
-                        this.room.getDescription();
+                        System.out.println(this.room.getDescription());
                     }
                     else if (this.room.getName() == "Exception Room"){
                         System.out.println("You rush out the door and down the path back into the main room.");
-                        setRoom(Main.cfq.mainRoom);
+                        setRoom(CoffeeQuest.mainRoom);
                     }
                     else {
                         System.out.println("There is nothing in that direction");
