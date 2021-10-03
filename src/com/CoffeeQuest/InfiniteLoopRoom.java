@@ -13,11 +13,6 @@ public class InfiniteLoopRoom extends Rooms
     // Boolean to keep record of whether the player has completed to room
     private boolean complete = false;
 
-    // Description given to player of the room
-    private final String description = "You enter the room, it is pitch black and dead silent. You let out a 'Hello?' " +
-            "The room immediately starts to echo, and it doesn't fade away. What is in here?" +
-            " Why won't the echo stop? Is this going to go on forever??";
-
     @Override
     /**
      * gets the name of the room
@@ -42,7 +37,12 @@ public class InfiniteLoopRoom extends Rooms
      * @return the description
      */
     public String getDescription(){
-        return this.description;
+        // Description given to player of the room
+        return "\nYou cautiously start to step forwards to the north down a long hallway that never seems to never end \n." +
+                "You finally reach a metal door, it looks heavy but you attempt to push it open."+
+                "You enter the room, it is pitch black and dead silent. You let out a 'Hello?' " +
+                "The room immediately starts to echo, and it doesn't fade away. What is in here?" +
+                " Why won't the echo stop? Is this going to go on forever??";
     }
 
     @Override

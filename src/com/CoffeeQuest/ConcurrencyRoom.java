@@ -13,12 +13,6 @@ public class ConcurrencyRoom extends Rooms
     // Boolean to keep record of whether the player has completed to room
     private boolean complete = false;
 
-    // Description given to player of the room
-    private final String description = "The lights are flickering on and off and there is a loud humming noise \nthat" +
-            " seems to pulsing on and off. You see two generators that seem \nto be trying to run at the same" +
-            " time, but there doesn't seem to be enough power to \nkeep them both going at once. How can I " +
-            "keep these lights?\n";
-
     @Override
     /**
      * gets the name of the room
@@ -43,7 +37,14 @@ public class ConcurrencyRoom extends Rooms
      * @return the description
      */
     public String getDescription(){
-        return this.description;
+        // Description given to player of the room
+        return "\nYou head towards the tunnel to the south. The tunnel seems to be flashing as if someone was turning on and off a light.\n" +
+                "'Is someone down there?' you yell, but there is no response. As you get closer you hear the faint hum of a machine.\n" +
+                "You finally reach the wooden door where this all coming from and open the door.\n"+
+                "The lights are flickering on and off and there is a loud humming noise \nthat" +
+                " seems to pulsing on and off. You see two generators that seem \nto be trying to run at the same" +
+                " time, but there doesn't seem to be enough power to \nkeep them both going at once. How can I " +
+                "keep these lights?\n";
     }
 
     @Override

@@ -13,12 +13,6 @@ public class ExceptionRoom extends Rooms
     // Boolean to keep record of whether the player has completed to room
     private boolean complete = false;
 
-    // Description given to player of the room
-    private final String description = "As you step into the room, you hear a crunch under your feet. " +
-            "What was that? \nYou look down only to see bugs crawling all over you feet! \n'AHHH' You shake them " +
-            "off and think about running out of the door, but you stay calm. \n" +
-            "\nThere has to be a way to fix this bug problem.\n";
-
     @Override
     /**
      * gets the name of the room
@@ -43,7 +37,15 @@ public class ExceptionRoom extends Rooms
      * @return the description
      */
     public String getDescription(){
-        return this.description;
+        // Description given to player of the room
+        return "\nYou head down a path covered in spider webs.\n" +
+                "'I hate bugs' you say to yourself\n" +
+                "You can barely see but you navigate your through. 'It seems like the walls moving.'" +
+                "You reach the end and go through the doorway."+
+                "As you step into the room, you hear a crunch under your feet. " +
+                "What was that? \nYou look down only to see bugs crawling all over you feet! \n'AHHH' You shake them " +
+                "off and think about running out of the door, but you stay calm. \n" +
+                "\nThere has to be a way to fix this bug problem.\n";
     }
 
     @Override
