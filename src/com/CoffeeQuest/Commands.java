@@ -18,7 +18,7 @@ public class Commands {
     }
 
     /**
-     * @return void
+     *
      */
     public void listCommands() {
         System.out.println("List of commands:");
@@ -33,7 +33,7 @@ public class Commands {
     }
 
     /**
-     * @return void
+     *
      */
     public void quit() {
         System.out.println("Quitting game....");
