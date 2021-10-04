@@ -14,7 +14,8 @@ public abstract class Rooms
      * gets the list of items in the room
      * @return the list of items
      */
-    abstract List<?> getItems();
+    abstract List<Items> getItems();
+
 
     /**
      * gets the description of the room
@@ -33,4 +34,5 @@ public abstract class Rooms
      * @param b bool the completion status will be set to
      */
     abstract void setCompletion(boolean b);
+
 }
