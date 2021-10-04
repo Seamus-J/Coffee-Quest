@@ -66,6 +66,7 @@ public class Player {
                 room.getDescription();
                 break;
             case "use":
+            case "use":
                 //TODO: Find a way to use an item of class Item.
                 item = cmds.getItem(args);
                 use(item);
@@ -171,12 +172,7 @@ public class Player {
                 System.out.println("That item is not recognized");
             }
             break;
-        case "use":
-            //TODO: Find a way to use an item of class Item.
-            item = cmds.getItem(args);
-            use(item);
-            break;
-        case "drop":
+            case "drop":
             if(args.toLowerCase(Locale.ROOT).equals("hammer")){
                 drop(hammer);
             }
