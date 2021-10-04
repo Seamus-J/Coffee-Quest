@@ -8,7 +8,7 @@ public class FinalExamRoom extends Rooms
     private final String name = "Final Exam Room";
 
     // A list of items in the room
-    private List<?> items;
+    private List<Items> items;
 
     // Boolean to keep record of whether the player has completed to room
     private boolean open = false;
@@ -27,7 +27,7 @@ public class FinalExamRoom extends Rooms
      * gets the list of items in the room
      * @return the list of items
      */
-    public List<?> getItems(){
+    public List<Items> getItems(){
         return this.items;
     }
 

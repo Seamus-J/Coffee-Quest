@@ -1,21 +1,21 @@
 package com.CoffeeQuest;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
-    public static CoffeeQuest cfq = new CoffeeQuest();
 
     public static void main(String[] args)
 	{
-        
-        // Intro
-        System.out.println("\n\nWelcome to Coffee Quest! The text-based adventure game that leads you through trials and tribulations\n" +
-                "that you have to overcome in order to escape the perilous dungeons of the Java Master.\n");
+        Hammer hammer = new Hammer();
+        Key key = new Key();
+        Flashlight flashlight = new Flashlight();
+        List<Items> list = new ArrayList<Items>();
+        list.add(hammer);
+        list.add(flashlight);
+       list.add(key);
 
-        // Start game option
-        //cfq.player.start();
+       CoffeeQuest.concurrencyRoom.setConcurrencyItems(list);
 
-        // Take player input
-        cfq.player.input();
+		CoffeeQuest cfq = new CoffeeQuest();
     }
 }
