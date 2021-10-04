@@ -70,83 +70,77 @@ public class Player {
                 drop(item);
                 break;
             case "move":
-                if(args.toLowerCase(Locale.ROOT).equals("north")) {
+                switch (args.toLowerCase(Locale.ROOT)) {
+                    case "north":
 
-                    // If the player is in the main room
-                    if (this.room.getName() == "Main Room"){
+                        // If the player is in the main room
+                        if (Objects.equals(this.room.getName(), "Main Room")) {
 
-                        // If all other room challanges have been completed
-                        if (CoffeeQuest.infiniteLoopRoom.getCompletion()&&
-                        CoffeeQuest.concurrencyRoom.getCompletion()&&
-                        CoffeeQuest.exceptionRoom.getCompletion()){
+                            // If all other room challanges have been completed
+                            if (CoffeeQuest.infiniteLoopRoom.getCompletion() &&
+                                    CoffeeQuest.concurrencyRoom.getCompletion() &&
+                                    CoffeeQuest.exceptionRoom.getCompletion()) {
 
-                            // Set player room to final exam room
-                            setRoom(CoffeeQuest.finalExamRoom);
+                                // Set player room to final exam room
+                                setRoom(CoffeeQuest.finalExamRoom);
+
+                                System.out.println(this.room.getDescription());
+                            } else {
+                                System.out.println(CoffeeQuest.finalExamRoom.getDescription());
+                            }
+                        } else if (this.room.getName() == "Concurrency Room") {
+                            System.out.println("\nYou can't take the flashing lights anymore and return to the main room");
+                            setRoom(CoffeeQuest.mainRoom);
+                        } else {
+                            System.out.println("\nThere is nothing in that direction");
+                        }
+                        break;
+                    case "south":
+
+                        // If the player is in the main room
+                        if (Objects.equals(this.room.getName(), "Main Room")) {
+
+                            // Set the players room to the concurrency room
+                            setRoom(CoffeeQuest.concurrencyRoom);
 
                             System.out.println(this.room.getDescription());
+                        } else {
+                            System.out.println("\nThere is nothing in that direction");
                         }
-                        else
-                        {
-                            CoffeeQuest.finalExamRoom.getDescription();
+
+                        break;
+                    case "east":
+
+                        // If the player is in the main room
+                        if (Objects.equals(this.room.getName(), "Main Room")) {
+
+                            // Set the players room to the exception room
+                            setRoom(CoffeeQuest.exceptionRoom);
+
+                            System.out.println(this.room.getDescription());
+                        } else if (Objects.equals(this.room.getName(), "Infinite Loop")) {
+                            System.out.println("\nYou can't take it anymore, you cover your ears and return to the main room.");
+                            setRoom(CoffeeQuest.mainRoom);
+                        } else {
+                            System.out.println("\nThere is nothing in that direction");
                         }
-                    }
-                    else if (this.room.getName() == "Concurrency Room"){
-                        System.out.println("\nYou can't take the flashing lights anymore and return to the main room");
-                        setRoom(CoffeeQuest.mainRoom);
-                    }
-                    else
-                    {
-                        System.out.println("\nThere is nothing in that direction");
-                    }
-                } else if(args.toLowerCase(Locale.ROOT).equals("south")) {
 
-                    // If the player is in the main room
-                    if (this.room.getName() == "Main Room"){
+                        break;
+                    case "west":
 
-                        // Set the players room to the concurrency room
-                        setRoom(CoffeeQuest.concurrencyRoom);
+                        // If the player is in the main room
+                        if (Objects.equals(this.room.getName(), "Main Room")) {
 
-                        System.out.println(this.room.getDescription());
-                    }
-                    else{
-                        System.out.println("\nThere is nothing in that direction");
-                    }
-
-                } else if(args.toLowerCase(Locale.ROOT).equals("east")) {
-
-                    // If the player is in the main room
-                    if (this.room.getName() == "Main Room"){
-
-                        // Set the players room to the exception room
-                        setRoom(CoffeeQuest.exceptionRoom);
-
-                        System.out.println(this.room.getDescription());
-                    }
-                    else if (this.room.getName() == "Infinite Loop"){
-                        System.out.println("\nYou can't take it anymore, you cover your ears and return to the main room.");
-                        setRoom(CoffeeQuest.mainRoom);
-                    }
-                    else{
-                        System.out.println("\nThere is nothing in that direction");
-                    }
-
-                } else if(args.toLowerCase(Locale.ROOT).equals("west")) {
-
-                    // If the player is in the main room
-                    if (this.room.getName() == "Main Room"){
-
-                        // Set the players room to the infinite loop room
-                        setRoom(CoffeeQuest.infiniteLoopRoom);
-
-                        System.out.println(this.room.getDescription());
-                    }
-                    else if (this.room.getName() == "Exception Room"){
-                        System.out.println("\nYou rush out the door and down the path back into the main room.");
-                        setRoom(CoffeeQuest.mainRoom);
-                    }
-                    else {
-                        System.out.println("\nThere is nothing in that direction");
-                    }
+                            // Set the players room to the infinite loop room
+                            setRoom(CoffeeQuest.infiniteLoopRoom);
+                            System.out.println(this.room.getDescription());
+                        } else if (Objects.equals(this.room.getName(), "Exception Room")) {
+                            System.out.println("\nYou rush out the door and down the path back into the main room.");
+                            setRoom(CoffeeQuest.mainRoom);
+                        } else {
+                            System.out.println("\nThere is nothing in that direction");
+                        }
+                        break;
                 }
                 break;
             case "talk":
