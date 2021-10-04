@@ -66,15 +66,9 @@ public class Player {
                 room.getDescription();
                 break;
             case "use":
-            case "use":
                 //TODO: Find a way to use an item of class Item.
                 item = cmds.getItem(args);
                 use(item);
-                break;
-            case "drop":
-                // TODO: Find a way to drop an item of class Item.
-                item = cmds.getItem(args);
-                drop(item);
                 break;
             case "move":
                 switch (args.toLowerCase(Locale.ROOT)) {
@@ -189,11 +183,6 @@ public class Player {
             break;
             case "talk":
                 // TODO: Find a way to talk to an NPC
-                break;
-            case "pickup":
-                // TODO: Find a way to pick up an item of class Item
-                item = cmds.getItem(args);
-                pickUp(item);
                 break;
             case "whatis":
                 item = cmds.getItem(args);
