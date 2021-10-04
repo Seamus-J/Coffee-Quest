@@ -1,6 +1,10 @@
 package com.CoffeeQuest;
 
 import java.util.*;
+import java.util.ArrayList;
+import java.util.Locale;
+import java.util.Objects;
+import java.util.Scanner;
 
 public class Player {
     // 2.2 --Example of encapsulation (1)--also note the public methods and use of get/set methods
@@ -8,9 +12,7 @@ public class Player {
     private ArrayList<Items> inventory;
     private List<Items> roomInventory;
     private Scanner input = new Scanner(System.in);
-    private Commands cmds;
-    private String command = "";
-    private String args = "";
+    private Commands cmds = new Commands();
     private Items item;
     private final String hammer = "hammer";
     private final String key = "key";
@@ -20,58 +22,134 @@ public class Player {
     public Player(Rooms room)
     {
         this.room = room;
-
         // Build a new array list of an inventory when the user starts the game.
         setInventory(new ArrayList<Items>());
-
-        // Print out the initial text for the user to see.
-        System.out.println("Welcome to Coffee Quest!");
-
         // Print out the lore and context of what's happening.
-        System.out.println("Insert lore here");
+        System.out.println("\n\nWelcome to Coffee Quest! The text-based adventure game that leads you through trials and tribulations\n" +
+                "that you have to overcome in order to escape the perilous dungeons of the Java Master.\n\n" +
+                "type 'help' for a list of commands\n");
         while(true) {
-            System.out.println("\nWhat do you want to do next?");
+            System.out.println("What do you want to do next?");
             System.out.print("> ");
             getCommands(input.nextLine());
         }
     }
 
     /**
+     * This method gets the user input and splits it into commands for the switch statement
+     * and args for the if conditions
      * @param inputCommand
      */
-    public void getCommands(String inputCommand){
-
-        boolean wrongInput = false;
-
+    public void getCommands(String inputCommand) {
+        String command = "";
+        String args = "";
         String[] cmdString = inputCommand.split("\\s");
+        command = cmdString[0];
 
+        // Validation for if the user entered only one word
+        if (cmdString.length > 1){
+            args = cmdString[1];
+        }
 
-        if(cmdString.length ==1  && cmdString[0].equals("help"))
-        {
-            cmds.listCommands();
-        }
-        else if(cmdString.length ==1 && cmdString[0].equals("quit"))
-        {
-            cmds.quit();
-        }
-        else if(cmdString.length ==1 && cmdString[0].equals("inventory"))
-        {
-                System.out.println("You have the following items in your inventory: ");
-                inventory.forEach(x -> System.out.println(x));
-        }
-        else
-        {
-            try{
-            command = cmdString[0];
-            args = cmdString[1] ;
-            } catch(ArrayIndexOutOfBoundsException e){
-                System.out.println("Your command is unclear. Make sure to include an argument with your command");
-                wrongInput = true;
-            }
+        switch(command.toLowerCase(Locale.ROOT)) {
+            case "help":
+                if(!Objects.equals(args, "")) {
+                    System.out.println(command + args);
+                } else {
+                    cmds.listCommands();
+                }
+                break;
+            case "quit": cmds.quit();
+                break;
+            case "where am i": // Setup where am I command
+                // TODO: Repeat where the user moved to.
+                room.getDescription();
+                break;
+            case "use":
+            case "use":
+                //TODO: Find a way to use an item of class Item.
+                item = cmds.getItem(args);
+                use(item);
+                break;
+            case "drop":
+                // TODO: Find a way to drop an item of class Item.
+                item = cmds.getItem(args);
+                drop(item);
+                break;
+            case "move":
+                switch (args.toLowerCase(Locale.ROOT)) {
+                    case "north":
 
-if(wrongInput == false)
-{
-    switch(command.toLowerCase(Locale.ROOT)) {
+                        // If the player is in the main room
+                        if (Objects.equals(this.room.getName(), "Main Room")) {
+
+                            // If all other room challanges have been completed
+                            if (CoffeeQuest.infiniteLoopRoom.getCompletion() &&
+                                    CoffeeQuest.concurrencyRoom.getCompletion() &&
+                                    CoffeeQuest.exceptionRoom.getCompletion()) {
+
+                                // Set player room to final exam room
+                                setRoom(CoffeeQuest.finalExamRoom);
+
+                                System.out.println(this.room.getDescription());
+                            } else {
+                                System.out.println(CoffeeQuest.finalExamRoom.getDescription());
+                            }
+                        } else if (this.room.getName() == "Concurrency Room") {
+                            System.out.println("\nYou can't take the flashing lights anymore and return to the main room");
+                            setRoom(CoffeeQuest.mainRoom);
+                        } else {
+                            System.out.println("\nThere is nothing in that direction");
+                        }
+                        break;
+                    case "south":
+
+                        // If the player is in the main room
+                        if (Objects.equals(this.room.getName(), "Main Room")) {
+
+                            // Set the players room to the concurrency room
+                            setRoom(CoffeeQuest.concurrencyRoom);
+
+                            System.out.println(this.room.getDescription());
+                        } else {
+                            System.out.println("\nThere is nothing in that direction");
+                        }
+
+                        break;
+                    case "east":
+
+                        // If the player is in the main room
+                        if (Objects.equals(this.room.getName(), "Main Room")) {
+
+                            // Set the players room to the exception room
+                            setRoom(CoffeeQuest.exceptionRoom);
+
+                            System.out.println(this.room.getDescription());
+                        } else if (Objects.equals(this.room.getName(), "Infinite Loop")) {
+                            System.out.println("\nYou can't take it anymore, you cover your ears and return to the main room.");
+                            setRoom(CoffeeQuest.mainRoom);
+                        } else {
+                            System.out.println("\nThere is nothing in that direction");
+                        }
+
+                        break;
+                    case "west":
+
+                        // If the player is in the main room
+                        if (Objects.equals(this.room.getName(), "Main Room")) {
+
+                            // Set the players room to the infinite loop room
+                            setRoom(CoffeeQuest.infiniteLoopRoom);
+                            System.out.println(this.room.getDescription());
+                        } else if (Objects.equals(this.room.getName(), "Exception Room")) {
+                            System.out.println("\nYou rush out the door and down the path back into the main room.");
+                            setRoom(CoffeeQuest.mainRoom);
+                        } else {
+                            System.out.println("\nThere is nothing in that direction");
+                        }
+                        break;
+                }
+                break;
 
         case "look":
             System.out.println(room.getDescription());
@@ -94,12 +172,7 @@ if(wrongInput == false)
                 System.out.println("That item is not recognized");
             }
             break;
-        case "use":
-            //TODO: Find a way to use an item of class Item.
-            item = cmds.getItem(args);
-            use(item);
-            break;
-        case "drop":
+            case "drop":
             if(args.toLowerCase(Locale.ROOT).equals("hammer")){
                 drop(hammer);
             }
@@ -114,133 +187,39 @@ if(wrongInput == false)
                 System.out.println("That item is not recognized");
             }
             break;
-        case "move":
-            if(args.toLowerCase(Locale.ROOT).equals("north")) {
-                // If the player is in the main room
-                if (this.room.getName() == "Main Room"){
-
-                    // If all other room challenges have been completed
-                    if (CoffeeQuest.infiniteLoopRoom.getCompletion()&&
-                            CoffeeQuest.concurrencyRoom.getCompletion()&&
-                            CoffeeQuest.exceptionRoom.getCompletion()){
-
-                        // Set player room to final exam room
-                        setRoom(CoffeeQuest.finalExamRoom);
-
-                        System.out.println("You approach a giant set of stairs littered with skulls and bones from the unfortunate souls who were here before.\n" +
-                                "There are flaming torches leading the way that light up the massive red door awaits on top. It almost looks too heavy to open.\n" +
-                                "You maneuver around the corpses, its like you can hear the whispers of the dead warning you, 'Save Yourself'\n" +
-                                "It frightens you but you have escape some how. You continue until you approach the door. You give it a nudge but it doesn't budge.\n" +
-                                "You put all of your force into, letting out a yell. Finally it starts to creak open.\n");
-                        System.out.println(this.room.getDescription());
-                        roomInventory = this.room.getItems();
-                        System.out.println("Objects in room: ");
-                        roomInventory.forEach(x -> System.out.println(x));
-                    }
-
-                    else
-                    {
-                        System.out.println("You approach a giant set of stairs littered with skulls and bones from the unfortunate souls who were here before.\n" +
-                                "There are flaming torches leading the way that light up the massive red door awaits on top. It almost looks too heavy to open.\n" +
-                                "You maneuver around the corpses, its like you can hear the whispers of the dead warning you, 'Save Yourself'\n" +
-                                "It frightens you but you have escape some how. You continue until you approach the door. You give it a nudge but it doesn't budge.\n" +
-                                "You put all of your force into, but it seems to be locked. 'Maybe I should check the other rooms first.' You return to the main room");
-                    }
-                }
-                else if (this.room.getName() == "Concurrency Room"){
-                    System.out.println("\nYou can't take the flashing lights anymore and return to the main room");
-                    setRoom(CoffeeQuest.mainRoom);
-                }
-                else
-                {
-                    System.out.println("\nThere is nothing in that direction");
-                }
-
-            } else if(args.toLowerCase(Locale.ROOT).equals("south")) {
-
-                // If the player is in the main room
-                if (this.room.getName() == "Main Room"){
-
-                    // Set the players room to the concurrency room
-                    setRoom(CoffeeQuest.concurrencyRoom);
-
-                    System.out.println("You head towards the tunnel to the east. The tunnel seems to be flashing as if someone was turning on and off a light.\n" +
-                            "'Is someone down there?' you yell, but there is no response. As you get closer you hear the faint hum of a machine.\n" +
-                            "You finally reach the wooden door where this all coming from and open the door.\n");
-                    System.out.println(this.room.getDescription());
-                    roomInventory = this.room.getItems();
-                    System.out.println("Objects in room: ");
-                    roomInventory.forEach(x -> System.out.println(x));
-                }
-                else{
-                    System.out.println("There is nothing in that direction");
-                }
-
-            } else if(args.toLowerCase(Locale.ROOT).equals("east")) {
-
-                // If the player is in the main room
-                if (this.room.getName() == "Main Room"){
-
-                    // Set the players room to the exception room
-                    setRoom(CoffeeQuest.exceptionRoom);
-
-                    System.out.println("You head down a path covered in spider webs.\n" +
-                            "'I hate bugs' you say to yourself\n" +
-                            "You can barely see but you navigate your through. 'It seems like the walls moving.'" +
-                            "You reach the end and go through the doorway.");
-                    System.out.println(this.room.getDescription());
-                    roomInventory = this.room.getItems();
-                    System.out.println("Objects in room: ");
-                    roomInventory.forEach(x -> System.out.println(x));
-                }
-                else if (this.room.getName() == "Infinite Loop"){
-                    System.out.println("You can't take it anymore, you cover your ears and return to the main room.");
-                    setRoom(CoffeeQuest.mainRoom);
-                }
-                else{
-                    System.out.println("There is nothing in that direction");
-                }
-
-
-            } else if(args.toLowerCase(Locale.ROOT).equals("west")) {
-
-                // If the player is in the main room
-                if (this.room.getName() == "Main Room"){
-
-                    // Set the players room to the infinite loop room
-                    setRoom(CoffeeQuest.infiniteLoopRoom);
-                    System.out.println("You cautiously start to step forwards to the north down a long hallway that never seems to end00 \n." +
-                            "You finally reach a giant metal door, it looks heavy but you attempt to push it open.\n");
-                    System.out.println(this.room.getDescription());
-                    roomInventory = this.room.getItems();
-                    System.out.println("Objects in room: ");
-                    roomInventory.forEach(x -> System.out.println(x));
-                }
-                else if (this.room.getName() == "Exception Room"){
-                    System.out.println("You rush out the door and down the path back into the main room.");
-                    setRoom(CoffeeQuest.mainRoom);
-                }
-                else {
-                    System.out.println("There is nothing in that direction");
-                }
-            }
-            else
-            {
-                System.out.println("Let's stick with the cardinal directions: north, south, east, and west");
-            }
-            break;
-        case "talk":
-            // TODO: Find a way to talk to an NPC
-            break;
-        case "whatis":
-            item = cmds.getItem(args);
-            System.out.println(item.getName() + " is " + item.getDescription());
-            break;
-        default: System.out.println("Didn't understand that command");
-    }
-}
+            case "talk":
+                // TODO: Find a way to talk to an NPC
+                break;
+            case "pickup":
+                // TODO: Find a way to pick up an item of class Item
+                item = cmds.getItem(args);
+                pickUp(item);
+                break;
+            case "whatis":
+                item = cmds.getItem(args);
+                System.out.println(item.getName() + " is " + item.getDescription());
+                break;
+            case "inventory":
+//              Return all the items in the inventory.
+//              Big brain move right here.... - Billy ;)
+                System.out.println("You have: ");
+                getInventory().forEach(i -> i.getName());
+                break;
+            default: System.out.println("Didn't understand that command");
         }
-}
+    }
+
+    /**
+     * This method intakes the players commands
+     */
+    public void input() {
+        while (true) {
+            System.out.println("What do you want to do next?");
+            System.out.print("> ");
+            getCommands(input.nextLine());
+        }
+    }
+
     //Pick-up an item
     private void pickUp(String itemName)
     {
