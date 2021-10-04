@@ -8,7 +8,7 @@ public class FinalExamRoom extends Rooms
     private final String name = "Final Exam Room";
 
     // A list of items in the room
-    private List<?> items;
+    private List<Items> finalExamRoomItems;
 
     // Boolean to keep record of whether the player has completed to room
     private boolean open = false;
@@ -27,8 +27,8 @@ public class FinalExamRoom extends Rooms
      * gets the list of items in the room
      * @return the list of items
      */
-    public List<?> getItems(){
-        return this.items;
+    public List<Items> getItems(){
+        return this.finalExamRoomItems;
     }
 
     @Override
@@ -88,5 +88,13 @@ public class FinalExamRoom extends Rooms
     void failRoomChallenge() {
         // TODO How does the player fail this challenge
         //  what will happen if the player fails
+    }
+
+    public List<Items> getFinalExamRoomItems() {
+        return finalExamRoomItems;
+    }
+
+    public void setFinalExamRoomItems(List<Items> finalExamRoomItems) {
+        this.finalExamRoomItems = finalExamRoomItems;
     }
 }

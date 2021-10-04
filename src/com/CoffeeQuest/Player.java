@@ -1,17 +1,23 @@
 package com.CoffeeQuest;
 
+import java.util.*;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class Player {
-    //Private variables
+    // 2.2 --Example of encapsulation (1)--also note the public methods and use of get/set methods
     private Rooms room;
     private ArrayList<Items> inventory;
+    private List<Items> roomInventory;
     private Scanner input = new Scanner(System.in);
     private Commands cmds = new Commands();
     private Items item;
+    private final String hammer = "hammer";
+    private final String key = "key";
+    private final String flashlight = "flashlight";
+
     //Constructor
     public Player(Rooms room)
     {
@@ -143,6 +149,48 @@ public class Player {
                         break;
                 }
                 break;
+
+        case "look":
+            System.out.println(room.getDescription());
+            roomInventory = this.room.getItems();
+            System.out.println("Objects in room: ");
+            roomInventory.forEach(x -> System.out.println(x));
+            break;
+        case "pickup":
+            if(args.toLowerCase(Locale.ROOT).equals("hammer")){
+                pickUp(hammer);
+            }
+            else if(args.toLowerCase(Locale.ROOT).equals("key")){
+                pickUp(key);
+            }
+            else if(args.toLowerCase(Locale.ROOT).equals("flashlight")){
+                pickUp(flashlight);
+            }
+            else
+            {
+                System.out.println("That item is not recognized");
+            }
+            break;
+        case "use":
+            //TODO: Find a way to use an item of class Item.
+            item = cmds.getItem(args);
+            use(item);
+            break;
+        case "drop":
+            if(args.toLowerCase(Locale.ROOT).equals("hammer")){
+                drop(hammer);
+            }
+            else if(args.toLowerCase(Locale.ROOT).equals("key")){
+                drop(key);
+            }
+            else if(args.toLowerCase(Locale.ROOT).equals("flashlight")){
+                drop(flashlight);
+            }
+            else
+            {
+                System.out.println("That item is not recognized");
+            }
+            break;
             case "talk":
                 // TODO: Find a way to talk to an NPC
                 break;
@@ -177,23 +225,50 @@ public class Player {
     }
 
     //Pick-up an item
-    private void pickUp(Items item)
+    private void pickUp(String itemName)
     {
-        inventory.add(item);
-        System.out.println("You picked up " + item.getName());
+        Items holder = null;
+        //If the room contains the item, transfer it to the player's inventory
+        for(Items currentItem : roomInventory)
+        {
+            if(currentItem.getName().equals(itemName)){
+                System.out.println("You picked up: " + currentItem.getName());
+                transferItem(currentItem, roomInventory, inventory);
+                holder = currentItem;
+                break;
+            }
+        }
+        if(holder == null){
+            System.out.println("That item is not recognized");
+        }
     }
 
     // Use an item
     private void use(Items item) {
+        if(item.getName().equals("mushroom")){
+            inventory.remove(item);
+        }
         inventory.remove(item);
         System.out.println("You used " + item.getName());
     }
 
     //Drop an item
-    private void drop(Items item)
+    private void drop(String itemName)
     {
-        inventory.remove(item);
-        System.out.println("You dropped " + item.getName());
+        Items holder = null;
+        //If the room contains the item, transfer it to the player's inventory
+        for(Items currentItem : inventory)
+        {
+            if(currentItem.getName().equals(itemName)){
+                System.out.println("You dropped: " + currentItem.getName());
+                transferItem(currentItem, inventory, roomInventory);
+                holder = currentItem;
+                break;
+            }
+        }
+        if(holder == null){
+            System.out.println("That item is not in your inventory");
+        }
     }
 
     //Get inventory
@@ -224,7 +299,7 @@ public class Player {
 
     private void showItems()
     {
-        System.out.println("Your inventory:");
+        System.out.println("Your inventory: ");
         System.out.println();
 
         //Check to see if there are items in inventory
@@ -244,5 +319,9 @@ public class Player {
         System.out.println();
     }
 
+    private void transferItem(Items x, List<Items> fromList, List<Items> toList){
+        fromList.remove(x);
+        toList.add(x);
+    }
 }
 

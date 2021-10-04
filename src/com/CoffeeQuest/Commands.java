@@ -2,14 +2,17 @@ package com.CoffeeQuest;
 
 
 //TODO: When the items are created, create an enum for the switch-case statement to utilize.
-//public enum ItemTypes {
-//
+//enum ItemTypes {
+//    HAMMER,
+//    NAIL,
+//    FLASHLIGHT
 //}
 
 public class Commands {
+
 //    Create item array
 //    Items itemsArray = {};
-    String[] commands = {"help", "move", "talk", "pickup", "use", "drop", "quit", "where am i"};
+    String[] commands = {"help", "move", "talk", "pickup", "use", "drop", "quit", "look"};
     String[] commandDescription = {"Get this list", "Move to the selected room.", "Talk to an NPC", "Pickup an item", "Use a selected Item", "Drop an item", "Quit the game", "Gives brief description of surroundings"};
     Rooms currentRoom;
 
@@ -41,15 +44,20 @@ public class Commands {
     }
 
     public Items getItem(String arg) {
-        Item item = new Item();
+        Items item = null;
         // Return the class of Item used to pickup, drop, or use.
         switch(arg) {
-            case "Item":
-                item = new Item();
+            case "key":
+                item = new Key();
+                break;
+            case "hammer":
+                item = new Hammer();
+                break;
+            case "flashlight":
+                item = new Flashlight();
                 break;
             default: break;
         }
-
         return item;
     }
 }

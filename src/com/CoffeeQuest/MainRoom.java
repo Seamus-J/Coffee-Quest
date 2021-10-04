@@ -8,7 +8,7 @@ public class MainRoom extends Rooms
     private final String name = "Main Room";
 
     // A list of items in the room
-    private List<?> items;
+    private List<Items> mainRoomItems;
 
     // Boolean to keep record of whether the player has completed to room
     private boolean complete = false;
@@ -33,8 +33,8 @@ public class MainRoom extends Rooms
      * gets the list of items in the room
      * @return the list of items
      */
-    public List<?> getItems(){
-        return this.items;
+    public List<Items> getItems(){
+        return this.mainRoomItems;
     }
 
     @Override
@@ -92,5 +92,13 @@ public class MainRoom extends Rooms
     public void failRoomChallenge() {
         // TODO How does the player fail this challenge
         //  what will happen if the player fails
+    }
+
+    public List<Items> getMainRoomItems() {
+        return mainRoomItems;
+    }
+
+    public void setMainRoomItems(List<Items> mainRoomItems) {
+        this.mainRoomItems = mainRoomItems;
     }
 }

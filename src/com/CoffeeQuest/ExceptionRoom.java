@@ -8,7 +8,7 @@ public class ExceptionRoom extends Rooms
     private final String name = "Exception Room";
 
     // A list of items in the room
-    private List<?> items;
+    private List<Items> exceptionRoomItems;
 
     // Boolean to keep record of whether the player has completed to room
     private boolean complete = false;
@@ -27,8 +27,8 @@ public class ExceptionRoom extends Rooms
      * gets the list of items in the room
      * @return the list of items
      */
-    public List<?> getItems(){
-        return this.items;
+    public List<Items> getItems(){
+        return this.exceptionRoomItems;
     }
 
     @Override
@@ -80,5 +80,13 @@ public class ExceptionRoom extends Rooms
     void failRoomChallenge() {
         // TODO How does the player fail this challenge
         //  what will happen if the player fails
+    }
+
+    public List<Items> getExceptionRoomItems() {
+        return exceptionRoomItems;
+    }
+
+    public void setExceptionRoomItems(List<Items> exceptionRoomItems) {
+        this.exceptionRoomItems = exceptionRoomItems;
     }
 }
