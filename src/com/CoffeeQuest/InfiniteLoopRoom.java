@@ -8,7 +8,7 @@ public class InfiniteLoopRoom extends Rooms
     private final String name = "Infinite Loop";
 
     // A list of items in the room
-    private List<Items> items;
+    private List<Items> infiniteLoopItems;
 
     // Boolean to keep record of whether the player has completed to room
     private boolean complete = false;
@@ -28,7 +28,7 @@ public class InfiniteLoopRoom extends Rooms
      * @return the list of items
      */
     public List<Items> getItems(){
-        return this.items;
+        return this.infiniteLoopItems;
     }
 
     @Override
@@ -78,4 +78,12 @@ public class InfiniteLoopRoom extends Rooms
         // TODO How does the player fail this challenge
         //  what will happen if the player fails
     }
+    public List<Items> getInfiniteLoopItems() {
+        return infiniteLoopItems;
+    }
+
+    public void setInfiniteLoopItems(List<Items> infiniteLoopItems) {
+        this.infiniteLoopItems = infiniteLoopItems;
+    }
+
 }

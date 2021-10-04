@@ -75,6 +75,9 @@ if(wrongInput == false)
 
         case "look":
             System.out.println(room.getDescription());
+            roomInventory = this.room.getItems();
+            System.out.println("Objects in room: ");
+            roomInventory.forEach(x -> System.out.println(x));
             break;
         case "pickup":
             if(args.toLowerCase(Locale.ROOT).equals("hammer")){
@@ -128,9 +131,11 @@ if(wrongInput == false)
                                 "There are flaming torches leading the way that light up the massive red door awaits on top. It almost looks too heavy to open.\n" +
                                 "You maneuver around the corpses, its like you can hear the whispers of the dead warning you, 'Save Yourself'\n" +
                                 "It frightens you but you have escape some how. You continue until you approach the door. You give it a nudge but it doesn't budge.\n" +
-                                "You put all of your force into, letting out a yell. Finally it starts to creak open.");
-                        System.out.println();
+                                "You put all of your force into, letting out a yell. Finally it starts to creak open.\n");
                         System.out.println(this.room.getDescription());
+                        roomInventory = this.room.getItems();
+                        System.out.println("Objects in room: ");
+                        roomInventory.forEach(x -> System.out.println(x));
                     }
 
                     else
@@ -164,7 +169,6 @@ if(wrongInput == false)
                             "You finally reach the wooden door where this all coming from and open the door.\n");
                     System.out.println(this.room.getDescription());
                     roomInventory = this.room.getItems();
-
                     System.out.println("Objects in room: ");
                     roomInventory.forEach(x -> System.out.println(x));
                 }
@@ -184,8 +188,10 @@ if(wrongInput == false)
                             "'I hate bugs' you say to yourself\n" +
                             "You can barely see but you navigate your through. 'It seems like the walls moving.'" +
                             "You reach the end and go through the doorway.");
-                    System.out.println();
                     System.out.println(this.room.getDescription());
+                    roomInventory = this.room.getItems();
+                    System.out.println("Objects in room: ");
+                    roomInventory.forEach(x -> System.out.println(x));
                 }
                 else if (this.room.getName() == "Infinite Loop"){
                     System.out.println("You can't take it anymore, you cover your ears and return to the main room.");
@@ -206,6 +212,9 @@ if(wrongInput == false)
                     System.out.println("You cautiously start to step forwards to the north down a long hallway that never seems to end00 \n." +
                             "You finally reach a giant metal door, it looks heavy but you attempt to push it open.\n");
                     System.out.println(this.room.getDescription());
+                    roomInventory = this.room.getItems();
+                    System.out.println("Objects in room: ");
+                    roomInventory.forEach(x -> System.out.println(x));
                 }
                 else if (this.room.getName() == "Exception Room"){
                     System.out.println("You rush out the door and down the path back into the main room.");
