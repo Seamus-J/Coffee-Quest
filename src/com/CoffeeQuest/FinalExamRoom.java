@@ -11,7 +11,7 @@ public class FinalExamRoom extends Rooms
     private List<?> items;
 
     // Boolean to keep record of whether the player has completed to room
-    private boolean complete = false;
+    private boolean open = false;
 
     @Override
     /**
@@ -38,7 +38,7 @@ public class FinalExamRoom extends Rooms
      */
     public String getDescription() {
         // Description given to player of the room
-        if (!this.complete) {
+        if (this.open) {
             return "\nYou approach a giant set of stairs littered with skulls and bones from the unfortunate souls who were here before.\n" +
                     "There are flaming torches leading the way that light up the massive red door that awaits on top. It almost looks too heavy to open.\n" +
                     "You maneuver around the corpses, its like you can hear the whispers of the dead warning you, 'Save Yourself'\\n\" +\n" +
@@ -52,7 +52,7 @@ public class FinalExamRoom extends Rooms
                     "There are flaming torches leading the way that light up the massive red door that awaits on top. It almost looks too heavy to open.\n" +
                     "You maneuver around the corpses, its like you can hear the whispers of the dead warning you, 'Save Yourself'\\n\" +\n" +
                     "It frightens you but you have escape some how. You continue until you approach the door. You give it a nudge but it doesn't budge.\n" +
-                    "You put all of your force into, but it seems to be locked. 'Maybe I should check the other rooms first.' You return to the main room";
+                    "You put all of your force into, but it seems to be locked. 'Maybe I should check the other rooms first.' You return to the main room\n";
         }
     }
 
@@ -62,7 +62,7 @@ public class FinalExamRoom extends Rooms
      * @return the bool of the completion status of the room
      */
     public boolean getCompletion() {
-        return this.complete;
+        return this.open;
     }
 
     @Override
@@ -71,7 +71,7 @@ public class FinalExamRoom extends Rooms
      * @param b bool the completion status will be set to
      */
     void setCompletion(boolean b) {
-        this.complete = b;
+        this.open = b;
     }
 
     /**
