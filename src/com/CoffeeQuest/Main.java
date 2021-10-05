@@ -3,7 +3,6 @@ package com.CoffeeQuest;
 import java.util.*;
 
 public class Main {
-    public static CoffeeQuest cfq = new CoffeeQuest();
 
     public static void main(String[] args)
 	{
@@ -39,6 +38,8 @@ public class Main {
         infiniteLoopItems.add(flashlight);
         infiniteLoopItems.add(key);
         CoffeeQuest.infiniteLoopRoom.setInfiniteLoopItems(infiniteLoopItems);
+
+        CoffeeQuest cfq = new CoffeeQuest();
 
         // Take player input
         cfq.player.input();
