@@ -11,7 +11,7 @@ public class FinalExamRoom extends Rooms
     private List<Items> finalExamRoomItems;
 
     // Boolean to keep record of whether the player has completed to room
-    private boolean open = false;
+    private boolean completion = false;
 
     @Override
     public String getName(){
@@ -26,7 +26,9 @@ public class FinalExamRoom extends Rooms
     @Override
     public String getDescription() {
         // Description given to player of the room
-        if (this.open) {
+        if (CoffeeQuest.infiniteLoopRoom.GetCompletion() &&
+        CoffeeQuest.exceptionRoom.GetCompletion() &&
+        CoffeeQuest.concurrencyRoom.GetCompletion()) {
             return "\nYou approach a giant set of stairs littered with skulls and bones from the unfortunate souls who were here before.\n" +
                     "There are flaming torches leading the way that light up the massive red door that awaits on top. It almost looks too heavy to open.\n" +
                     "You maneuver around the corpses, its like you can hear the whispers of the dead warning you, 'Save Yourself'\\n\" +\n" +
@@ -46,12 +48,12 @@ public class FinalExamRoom extends Rooms
 
     @Override
     public boolean GetCompletion() {
-        return this.open;
+        return this.completion;
     }
 
     @Override
     void IsCompletion(boolean b) {
-        this.open = b;
+        this.completion = b;
     }
 
     /**

@@ -34,5 +34,4 @@ public abstract class Rooms
      * @param b bool the completion status will be set to
      */
     abstract void IsCompletion(boolean b);
-
 }
