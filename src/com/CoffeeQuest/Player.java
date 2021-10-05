@@ -86,6 +86,10 @@ public class Player {
                                 setRoom(CoffeeQuest.finalExamRoom);
 
                                 System.out.println(this.room.getDescription());
+
+                                roomInventory = this.room.getItems();
+                                System.out.println("Objects in room: ");
+                                roomInventory.forEach(x -> System.out.println(x));
                             } else {
                                 System.out.println(CoffeeQuest.finalExamRoom.getDescription());
                             }
@@ -105,6 +109,10 @@ public class Player {
                             setRoom(CoffeeQuest.concurrencyRoom);
 
                             System.out.println(this.room.getDescription());
+
+                            roomInventory = this.room.getItems();
+                            System.out.println("Objects in room: ");
+                            roomInventory.forEach(x -> System.out.println(x));
                         } else {
                             System.out.println("\nThere is nothing in that direction");
                         }
@@ -119,6 +127,11 @@ public class Player {
                             setRoom(CoffeeQuest.exceptionRoom);
 
                             System.out.println(this.room.getDescription());
+
+                            roomInventory = this.room.getItems();
+                            System.out.println("Objects in room: ");
+                            roomInventory.forEach(x -> System.out.println(x));
+
                         } else if (Objects.equals(this.room.getName(), "Infinite Loop")) {
                             System.out.println("\nYou can't take it anymore, you cover your ears and return to the main room.");
                             setRoom(CoffeeQuest.mainRoom);
@@ -135,6 +148,11 @@ public class Player {
                             // Set the players room to the infinite loop room
                             setRoom(CoffeeQuest.infiniteLoopRoom);
                             System.out.println(this.room.getDescription());
+
+                            roomInventory = this.room.getItems();
+                            System.out.println("Objects in room: ");
+                            roomInventory.forEach(x -> System.out.println(x));
+
                         } else if (Objects.equals(this.room.getName(), "Exception Room")) {
                             System.out.println("\nYou rush out the door and down the path back into the main room.");
                             setRoom(CoffeeQuest.mainRoom);
