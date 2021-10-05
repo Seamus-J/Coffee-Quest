@@ -7,7 +7,6 @@ public class Main {
 
     public static void main(String[] args)
 	{
-        
         // Intro
         System.out.println("\n\nWelcome to Coffee Quest! The text-based adventure game that leads you through trials and tribulations\n" +
                 "that you have to overcome in order to escape the perilous dungeons of the Java Master.\n");

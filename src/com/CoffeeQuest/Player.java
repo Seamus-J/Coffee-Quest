@@ -167,6 +167,7 @@ public class Player {
                 break;
             case "talk":
                 // TODO: Find a way to talk to an NPC
+                CoffeeQuest.npc.GreetPlayer();
                 break;
             case "pickup":
                 // TODO: Find a way to pick up an item of class Item
@@ -183,6 +184,10 @@ public class Player {
                 System.out.println("You have: ");
                 getInventory().forEach(i -> i.getName());
                 break;
+            case "cheat":
+                CoffeeQuest.concurrencyRoom.setCompletion(true);
+                CoffeeQuest.exceptionRoom.setCompletion(true);
+                CoffeeQuest.infiniteLoopRoom.setCompletion(true);
             default: System.out.println("Didn't understand that command");
         }
     }
