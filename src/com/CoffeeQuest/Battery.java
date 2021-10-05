@@ -1,7 +1,7 @@
 package com.CoffeeQuest;
 
 public class Battery extends Items{
-    private final String itemName = "Battery";
+    private final String itemName = "battery";
     private final String desc = "This could power an entire block of houses";
 
     @Override
@@ -9,6 +9,12 @@ public class Battery extends Items{
 
     @Override
     String getDescription() {return desc;}
+
+    @Override
+    String useItemDescription() {
+        return "\nYou connect the battery to the generators. The lights stop flickering and the humming becomes constant.\n" +
+                "It feels oddly soothing. 'There's nothing more for me here' you tell yourself";
+    }
 
     @Override
     public String toString() {
