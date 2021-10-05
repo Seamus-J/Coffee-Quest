@@ -14,28 +14,16 @@ public class FinalExamRoom extends Rooms
     private boolean open = false;
 
     @Override
-    /**
-     * gets the name of the room
-     * @return the name of the room
-     */
     public String getName(){
         return this.name;
     }
 
     @Override
-    /**
-     * gets the list of items in the room
-     * @return the list of items
-     */
     public List<Items> getItems(){
         return this.finalExamRoomItems;
     }
 
     @Override
-    /**
-     * gets the description of the room
-     * @return the description
-     */
     public String getDescription() {
         // Description given to player of the room
         if (this.open) {
@@ -57,20 +45,12 @@ public class FinalExamRoom extends Rooms
     }
 
     @Override
-    /**
-     * gets the completion status of a room
-     * @return the bool of the completion status of the room
-     */
-    public boolean getCompletion() {
+    public boolean GetCompletion() {
         return this.open;
     }
 
     @Override
-    /**
-     * changes the completion status of a room if the players finds the solution
-     * @param b bool the completion status will be set to
-     */
-    void setCompletion(boolean b) {
+    void IsCompletion(boolean b) {
         this.open = b;
     }
 

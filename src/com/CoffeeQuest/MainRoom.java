@@ -20,47 +20,27 @@ public class MainRoom extends Rooms
             "keep these lights?\n";
 
     @Override
-    /**
-     * gets the name of the room
-     * @return the name of the room
-     */
     public String getName(){
         return this.name;
     }
 
     @Override
-    /**
-     * gets the list of items in the room
-     * @return the list of items
-     */
     public List<Items> getItems(){
         return this.mainRoomItems;
     }
 
     @Override
-    /**
-     * gets the description of the room
-     * @return the description
-     */
     public String getDescription(){
         return this.description;
     }
 
     @Override
-    /**
-     * gets the completion status of a room
-     * @return the bool of the completion status of the room
-     */
-    public boolean getCompletion() {
+    public boolean GetCompletion() {
         return this.complete;
     }
 
     @Override
-    /**
-     * changes the completion status of a room if the players finds the solution
-     * @param b bool the completion status will be set to
-     */
-    void setCompletion(boolean b) {
+    void IsCompletion(boolean b) {
         this.complete = b;
     }
 
@@ -74,13 +54,13 @@ public class MainRoom extends Rooms
     public void completeRoomChallenge( ConcurrencyRoom c, ExceptionRoom e, FinalExamRoom f, InfiniteLoopRoom i) {
 
         // If all rooms complete, set main room completion to true and allow player to complete the game
-        if (c.getCompletion() == true &&
-        e.getCompletion() == true &&
-        f.getCompletion() == true &&
-        i.getCompletion() == true)
+        if (c.GetCompletion() &&
+                e.GetCompletion() &&
+                f.GetCompletion() &&
+                i.GetCompletion())
         {
             // Completion set to true
-            this.setCompletion(true);
+            this.IsCompletion(true);
 
             // TODO Congratulation message on winning
         }

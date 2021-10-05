@@ -231,7 +231,7 @@ public class NPC
      public void quizFailure()
      {
          System.out.println("Silhouetted Man: 'That's unfortunate. You have just given your third and final wrong answer, and have failed the quiz.");
-         examRoom.setCompletion(false);
+         examRoom.IsCompletion(false);
      }
 
 
@@ -242,7 +242,7 @@ public class NPC
     //this method is called when the player has successfully completed the quiz
      public void quizPass()
      {
-         examRoom.setCompletion(true);
+         examRoom.IsCompletion(true);
      }
 
 }

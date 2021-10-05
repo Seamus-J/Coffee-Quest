@@ -14,29 +14,17 @@ public class ConcurrencyRoom extends Rooms
     private boolean complete = false;
 
     @Override
-    /**
-     * gets the name of the room
-     * @return the name of the room
-     */
     public String getName(){
         return this.name;
     }
 
     @Override
-    /**
-     * gets the list of items in the room
-     * @return the list of items
-     */
     public List<Items> getItems(){
         return this.getConcurrencyItems();
     }
 
 
     @Override
-    /**
-     * gets the description of the room
-     * @return the description
-     */
     public String getDescription(){
         // Description given to player of the room
         return "\nYou head towards the tunnel to the south. The tunnel seems to be flashing as if someone was turning on and off a light.\n" +
@@ -49,20 +37,12 @@ public class ConcurrencyRoom extends Rooms
     }
 
     @Override
-    /**
-     * gets the completion status of a room
-     * @return the bool of the completion status of the room
-     */
-    public boolean getCompletion() {
+    public boolean GetCompletion() {
         return this.complete;
     }
 
     @Override
-    /**
-     * changes the completion status of a room if the players finds the solution
-     * @param b bool the completion status will be set to
-     */
-    void setCompletion(boolean b) {
+    void IsCompletion(boolean b) {
         this.complete = b;
     }
 

@@ -77,10 +77,10 @@ public class Player {
                         // If the player is in the main room
                         if (Objects.equals(this.room.getName(), "Main Room")) {
 
-                            // If all other room challanges have been completed
-                            if (CoffeeQuest.infiniteLoopRoom.getCompletion() &&
-                                    CoffeeQuest.concurrencyRoom.getCompletion() &&
-                                    CoffeeQuest.exceptionRoom.getCompletion()) {
+                            // If all other room challenges have been completed
+                            if (CoffeeQuest.infiniteLoopRoom.GetCompletion() &&
+                                    CoffeeQuest.concurrencyRoom.GetCompletion() &&
+                                    CoffeeQuest.exceptionRoom.GetCompletion()) {
 
                                 // Set player room to final exam room
                                 setRoom(CoffeeQuest.finalExamRoom);
