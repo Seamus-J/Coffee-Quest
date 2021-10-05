@@ -14,9 +14,6 @@ public class Player {
     private Scanner input = new Scanner(System.in);
     private Commands cmds = new Commands();
     private Items item;
-    private final String hammer = "hammer";
-    private final String key = "key";
-    private final String flashlight = "flashlight";
 
     //Constructor
     public Player(Rooms room)
@@ -66,9 +63,25 @@ public class Player {
                 room.getDescription();
                 break;
             case "use":
-                //TODO: Find a way to use an item of class Item.
-                item = cmds.getItem(args);
-                use(item);
+                // To tell if the player has it in their inventory
+                boolean inInventory = false;
+                Items holder = null;
+
+                // Loop thru inventory to try and find the item
+                for(Items i : inventory){
+                    if (i.getName().equals(args.toLowerCase(Locale.ROOT))){
+                        inInventory = true;
+                        holder = i;
+                    }
+                }
+
+                if (inInventory){
+                    use(holder);
+                }
+                else
+                {
+                    System.out.println("You do not have this item");
+                }
                 break;
             case "move":
                 switch (args.toLowerCase(Locale.ROOT)) {
@@ -77,27 +90,32 @@ public class Player {
                         // If the player is in the main room
                         if (Objects.equals(this.room.getName(), "Main Room")) {
 
-                            // If all other room challanges have been completed
-                            if (CoffeeQuest.infiniteLoopRoom.getCompletion() &&
-                                    CoffeeQuest.concurrencyRoom.getCompletion() &&
-                                    CoffeeQuest.exceptionRoom.getCompletion()) {
+                            // If all other room challenges have been completed
+                            if (CoffeeQuest.infiniteLoopRoom.GetCompletion() &&
+                                    CoffeeQuest.concurrencyRoom.GetCompletion() &&
+                                    CoffeeQuest.exceptionRoom.GetCompletion()) {
 
                                 // Set player room to final exam room
                                 setRoom(CoffeeQuest.finalExamRoom);
 
                                 System.out.println(this.room.getDescription());
-
-                                roomInventory = this.room.getItems();
-                                System.out.println("Objects in room: ");
-                                roomInventory.forEach(x -> System.out.println(x));
                             } else {
                                 System.out.println(CoffeeQuest.finalExamRoom.getDescription());
                             }
                         } else if (this.room.getName() == "Concurrency Room") {
-                            System.out.println("\nYou can't take the flashing lights anymore and return to the main room");
-                            setRoom(CoffeeQuest.mainRoom);
+
+                            // If the player leaves without completing the room
+                            if (!this.room.GetCompletion()){
+                                System.out.println("\nYou can't take the flashing lights anymore and return to the main room\n");
+                                setRoom(CoffeeQuest.mainRoom);
+                            }
+                            else {
+                                System.out.println("\nYou head back to the main room.\n");
+                                setRoom(CoffeeQuest.mainRoom);
+                            }
+
                         } else {
-                            System.out.println("\nThere is nothing in that direction");
+                            System.out.println("\nThere is nothing in that direction\n");
                         }
                         break;
                     case "south":
@@ -108,8 +126,17 @@ public class Player {
                             // Set the players room to the concurrency room
                             setRoom(CoffeeQuest.concurrencyRoom);
 
-                            System.out.println(this.room.getDescription());
+                            // If the player has completed the room, print a prompt reminding them
+                            if (this.room.GetCompletion()){
+                                System.out.println("There is nothing to do here.\n" +
+                                        "Unless you are looking for an Item I would head back where you came from.\n");
+                            }
+                            else{
+                                // Display room description if not complete
+                                System.out.println(this.room.getDescription());
+                            }
 
+                            // Display items in the room
                             roomInventory = this.room.getItems();
                             System.out.println("Objects in room: ");
                             roomInventory.forEach(x -> System.out.println(x));
@@ -126,15 +153,31 @@ public class Player {
                             // Set the players room to the exception room
                             setRoom(CoffeeQuest.exceptionRoom);
 
-                            System.out.println(this.room.getDescription());
+                            // If the player has completed the room, print a prompt reminding them
+                            if (this.room.GetCompletion()){
+                                System.out.println("There is nothing to do here.\n" +
+                                        "Unless you are looking for an Item I would head back where you came from.\n");
+                            }
+                            else{
+                                // Display room description if not complete
+                                System.out.println(this.room.getDescription());
+                            }
 
+                            // Display items in the room
                             roomInventory = this.room.getItems();
                             System.out.println("Objects in room: ");
                             roomInventory.forEach(x -> System.out.println(x));
 
                         } else if (Objects.equals(this.room.getName(), "Infinite Loop")) {
-                            System.out.println("\nYou can't take it anymore, you cover your ears and return to the main room.");
-                            setRoom(CoffeeQuest.mainRoom);
+                            // If the player leaves without completing the room
+                            if (!this.room.GetCompletion()){
+                                System.out.println("\nYou can't take it anymore, you cover your ears and return to the main room.\n");
+                                setRoom(CoffeeQuest.mainRoom);
+                            }
+                            else {
+                                System.out.println("\nYou head back to the main room.\n");
+                                setRoom(CoffeeQuest.mainRoom);
+                            }
                         } else {
                             System.out.println("\nThere is nothing in that direction");
                         }
@@ -147,15 +190,33 @@ public class Player {
 
                             // Set the players room to the infinite loop room
                             setRoom(CoffeeQuest.infiniteLoopRoom);
-                            System.out.println(this.room.getDescription());
 
+                            // If the player has completed the room, print a prompt reminding them
+                            if (this.room.GetCompletion()){
+                                System.out.println("There is nothing to do here.\n" +
+                                        "Unless you are looking for an Item I would head back where you came from.\n");
+                            }
+                            else{
+                                // Display room description if not complete
+                                System.out.println(this.room.getDescription());
+                            }
+
+                            // Display the items in the room
                             roomInventory = this.room.getItems();
                             System.out.println("Objects in room: ");
                             roomInventory.forEach(x -> System.out.println(x));
 
                         } else if (Objects.equals(this.room.getName(), "Exception Room")) {
-                            System.out.println("\nYou rush out the door and down the path back into the main room.");
-                            setRoom(CoffeeQuest.mainRoom);
+
+                            // If the player leaves without completing the room
+                            if (!this.room.GetCompletion()){
+                                System.out.println("\nYou rush out the door and down the path back into the main room.\n");
+                                setRoom(CoffeeQuest.mainRoom);
+                            }
+                            else {
+                                System.out.println("\nYou head back to the main room.\n");
+                                setRoom(CoffeeQuest.mainRoom);
+                            }
                         } else {
                             System.out.println("\nThere is nothing in that direction");
                         }
@@ -171,13 +232,19 @@ public class Player {
             break;
         case "pickup":
             if(args.toLowerCase(Locale.ROOT).equals("hammer")){
-                pickUp(hammer);
-            }
-            else if(args.toLowerCase(Locale.ROOT).equals("key")){
-                pickUp(key);
+                pickUp("hammer");
             }
             else if(args.toLowerCase(Locale.ROOT).equals("flashlight")){
-                pickUp(flashlight);
+                pickUp("flashlight");
+            }
+            else if(args.toLowerCase(Locale.ROOT).equals("battery")){
+                pickUp("battery");
+            }
+            else if(args.toLowerCase(Locale.ROOT).equals("kitkat")){
+                pickUp("kitkat");
+            }
+            else if(args.toLowerCase(Locale.ROOT).equals("poison")){
+                pickUp("poison");
             }
             else
             {
@@ -186,13 +253,13 @@ public class Player {
             break;
             case "drop":
             if(args.toLowerCase(Locale.ROOT).equals("hammer")){
-                drop(hammer);
+                drop("hammer");
             }
             else if(args.toLowerCase(Locale.ROOT).equals("key")){
-                drop(key);
+                drop("key");
             }
             else if(args.toLowerCase(Locale.ROOT).equals("flashlight")){
-                drop(flashlight);
+                drop("flashlight");
             }
             else
             {
@@ -201,6 +268,7 @@ public class Player {
             break;
             case "talk":
                 // TODO: Find a way to talk to an NPC
+                CoffeeQuest.npc.GreetPlayer();
                 break;
             case "whatis":
                 item = cmds.getItem(args);
@@ -212,6 +280,10 @@ public class Player {
                 System.out.println("You have the following items in your inventory: ");
                 inventory.forEach(x -> System.out.println(x));
                 break;
+            case "cheat":
+                CoffeeQuest.concurrencyRoom.setCompletion(true);
+                CoffeeQuest.exceptionRoom.setCompletion(true);
+                CoffeeQuest.infiniteLoopRoom.setCompletion(true);
             default: System.out.println("Didn't understand that command");
         }
     }
@@ -248,11 +320,76 @@ public class Player {
 
     // Use an item
     private void use(Items item) {
-        if(item.getName().equals("mushroom")){
-            inventory.remove(item);
+
+        // If statement to see what item the player used
+
+        if(item.getName().equals("battery")){
+            // If they are in the Concurrency Room
+            if (Objects.equals(this.room.getName(), "Concurrency Room")){
+                // Remove item, print description, complete the room
+                inventory.remove(item);
+                System.out.println(item.useItemDescription());
+                this.room.IsCompletion(true);
+            }
+            else{
+                // If not in right room, do nothing
+                System.out.println("\nThere is no use for that here");
+            }
         }
-        inventory.remove(item);
-        System.out.println("You used " + item.getName());
+        else if (item.getName().equals("flashlight")){
+            // If they are in the Infinite loop room
+            if (Objects.equals(this.room.getName(), "Infinite Loop")){
+                // print description, complete the room
+                CoffeeQuest.infiniteLoopRoom.IsDark(false);
+                System.out.println(item.useItemDescription());
+            }
+            else{
+                System.out.println("\nIt is already bright in this room.");
+            }
+        }
+        else if(item.getName().equals("hammer")){
+            // If they are in the infinite loop room
+            if (Objects.equals(this.room.getName(), "Infinite Loop")){
+                // Remove item, print description, complete the room
+                if (!CoffeeQuest.infiniteLoopRoom.GetIsDark()){
+                    inventory.remove(item);
+                    System.out.println(item.useItemDescription());
+                    this.room.IsCompletion(true);
+                }
+                else{
+                    System.out.println("I can't see anything, I need some light first before I swing this hammer!");
+                }
+            }
+            else{
+                System.out.println("\nThere is no use for that here");
+            }
+        }
+        else if(item.getName().equals("kitkat")){
+            // If in infinite loop room
+            if (Objects.equals(this.room.getName(), "Infinite Loop")){
+                // Remove item, print description, complete the room
+                inventory.remove(item);
+                System.out.println(item.useItemDescription());
+                this.room.IsCompletion(true);
+            }
+            else{
+                inventory.remove(item);
+                System.out.println("\nMmm that's good, do you think I could have used these late on?\n" +
+                        "I guess we will never know.");
+            }
+        }
+        else if (item.getName().equals("poison")){
+            // If in exception room
+            if (Objects.equals(this.room.getName(), "Exception Room")){
+                // Remove item, print description, complete the room
+                inventory.remove(item);
+                System.out.println(item.useItemDescription());
+                this.room.IsCompletion(true);
+            }
+            else{
+                System.out.println("\nThere is no use for that here");
+            }
+        }
     }
 
     //Drop an item

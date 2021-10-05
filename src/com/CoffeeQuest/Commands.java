@@ -47,14 +47,20 @@ public class Commands {
         Items item = null;
         // Return the class of Item used to pickup, drop, or use.
         switch(arg) {
-            case "key":
-                item = new Key();
+            case "battery":
+                item = new Battery();
                 break;
             case "hammer":
                 item = new Hammer();
                 break;
             case "flashlight":
                 item = new Flashlight();
+                break;
+            case "kitkat":
+                item = new KitKat();
+                break;
+            case "poison":
+                item = new Poison();
                 break;
             default: break;
         }

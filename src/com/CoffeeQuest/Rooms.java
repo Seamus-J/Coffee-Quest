@@ -27,12 +27,11 @@ public abstract class Rooms
      * gets the completion status of a room
      * @return the bool of the completion status of the room
      */
-    abstract boolean getCompletion();
+    abstract boolean GetCompletion();
 
     /**
      * changes the completion status of a room if the players finds the solution
      * @param b bool the completion status will be set to
      */
-    abstract void setCompletion(boolean b);
-
+    abstract void IsCompletion(boolean b);
 }

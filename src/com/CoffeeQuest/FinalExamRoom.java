@@ -11,34 +11,24 @@ public class FinalExamRoom extends Rooms
     private List<Items> finalExamRoomItems;
 
     // Boolean to keep record of whether the player has completed to room
-    private boolean open = false;
+    private boolean completion = false;
 
     @Override
-    /**
-     * gets the name of the room
-     * @return the name of the room
-     */
     public String getName(){
         return this.name;
     }
 
     @Override
-    /**
-     * gets the list of items in the room
-     * @return the list of items
-     */
     public List<Items> getItems(){
         return this.finalExamRoomItems;
     }
 
     @Override
-    /**
-     * gets the description of the room
-     * @return the description
-     */
     public String getDescription() {
         // Description given to player of the room
-        if (this.open) {
+        if (CoffeeQuest.infiniteLoopRoom.GetCompletion() &&
+        CoffeeQuest.exceptionRoom.GetCompletion() &&
+        CoffeeQuest.concurrencyRoom.GetCompletion()) {
             return "\nYou approach a giant set of stairs littered with skulls and bones from the unfortunate souls who were here before.\n" +
                     "There are flaming torches leading the way that light up the massive red door that awaits on top. It almost looks too heavy to open.\n" +
                     "You maneuver around the corpses, its like you can hear the whispers of the dead warning you, 'Save Yourself'\\n\" +\n" +
@@ -57,21 +47,13 @@ public class FinalExamRoom extends Rooms
     }
 
     @Override
-    /**
-     * gets the completion status of a room
-     * @return the bool of the completion status of the room
-     */
-    public boolean getCompletion() {
-        return this.open;
+    public boolean GetCompletion() {
+        return this.completion;
     }
 
     @Override
-    /**
-     * changes the completion status of a room if the players finds the solution
-     * @param b bool the completion status will be set to
-     */
-    void setCompletion(boolean b) {
-        this.open = b;
+    void IsCompletion(boolean b) {
+        this.completion = b;
     }
 
     /**

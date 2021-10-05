@@ -11,6 +11,12 @@ public class Flashlight extends Items{
     String getDescription() {return desc;}
 
     @Override
+    String useItemDescription() {
+        return "\nYou switch on your flashlight, only to reveal you are surrounded by mirrors. Nothing seems to end\n" +
+                "in this room. How can I BREAK this cycle???";
+    }
+
+    @Override
     public String toString() {
         return itemName  + ": " + desc;
     }
