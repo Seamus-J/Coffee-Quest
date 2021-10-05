@@ -268,6 +268,7 @@ public class Player {
             break;
             case "talk":
                 // TODO: Find a way to talk to an NPC
+                CoffeeQuest.npc.GreetPlayer();
                 break;
             case "whatis":
                 item = cmds.getItem(args);
@@ -279,6 +280,10 @@ public class Player {
                 System.out.println("You have the following items in your inventory: ");
                 inventory.forEach(x -> System.out.println(x));
                 break;
+            case "cheat":
+                CoffeeQuest.concurrencyRoom.setCompletion(true);
+                CoffeeQuest.exceptionRoom.setCompletion(true);
+                CoffeeQuest.infiniteLoopRoom.setCompletion(true);
             default: System.out.println("Didn't understand that command");
         }
     }

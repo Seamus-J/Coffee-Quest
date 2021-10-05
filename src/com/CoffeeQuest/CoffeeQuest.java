@@ -8,5 +8,6 @@ public class CoffeeQuest {
     public static FinalExamRoom finalExamRoom = new FinalExamRoom();
     public static InfiniteLoopRoom infiniteLoopRoom = new InfiniteLoopRoom();
     public static MainRoom mainRoom = new MainRoom();
+    public static NPC npc = new NPC();
     Player player = new Player(mainRoom);
 }
