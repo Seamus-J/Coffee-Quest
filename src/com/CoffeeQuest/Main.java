@@ -39,7 +39,9 @@ public class Main {
         infiniteLoopItems.add(key);
         CoffeeQuest.infiniteLoopRoom.setInfiniteLoopItems(infiniteLoopItems);
 
+        CoffeeQuest cfq = new CoffeeQuest();
 
-		CoffeeQuest cfq = new CoffeeQuest();
+        // Take player input
+        cfq.player.input();
     }
 }
