@@ -209,8 +209,8 @@ public class Player {
             case "inventory":
 //              Return all the items in the inventory.
 //              Big brain move right here.... - Billy ;)
-                System.out.println("You have: ");
-                getInventory().forEach(i -> i.getName());
+                System.out.println("You have the following items in your inventory: ");
+                inventory.forEach(x -> System.out.println(x));
                 break;
             default: System.out.println("Didn't understand that command");
         }
