@@ -3,10 +3,11 @@ package com.CoffeeQuest;
 import java.util.Scanner;
 
 public class CoffeeQuest {
-    ConcurrencyRoom concurrencyRoom = new ConcurrencyRoom();
-    ExceptionRoom exceptionRoom = new ExceptionRoom();
-    FinalExamRoom finalExamRoom = new FinalExamRoom();
-    InfiniteLoopRoom infiniteLoopRoom = new InfiniteLoopRoom();
-    MainRoom mainRoom = new MainRoom();
+    public static ConcurrencyRoom concurrencyRoom = new ConcurrencyRoom();
+    public static  ExceptionRoom exceptionRoom = new ExceptionRoom();
+    public static FinalExamRoom finalExamRoom = new FinalExamRoom();
+    public static InfiniteLoopRoom infiniteLoopRoom = new InfiniteLoopRoom();
+    public static MainRoom mainRoom = new MainRoom();
+    public static NPC npc = new NPC();
     Player player = new Player(mainRoom);
 }

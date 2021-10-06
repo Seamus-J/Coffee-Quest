@@ -5,7 +5,7 @@ public abstract class Items {
     //Name of the Item
     private String name;
 
-    //Decription of the item
+    //Description of the item
     private String description;
 
     // Method to pull the name of the item
@@ -13,6 +13,8 @@ public abstract class Items {
 
     //Method to pull the description of the item
     abstract String getDescription();
+
+    abstract String useItemDescription();
 
     //TODO Depending on how we set up the rooms we can use a comparison to check item vs. room either here
     //or as part of the item itself. We'll figure it out as a group.

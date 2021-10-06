@@ -8,59 +8,41 @@ public class ExceptionRoom extends Rooms
     private final String name = "Exception Room";
 
     // A list of items in the room
-    private List<?> items;
+    private List<Items> exceptionRoomItems;
 
     // Boolean to keep record of whether the player has completed to room
     private boolean complete = false;
 
-    // Description given to player of the room
-    private final String description = "As you step into the room, you hear a crunch under your feet. " +
-            "What was that? \nYou look down only to see bugs crawling all over you feet! \n'AHHH' You shake them " +
-            "off and try to run out of the door, but the door has \nlocked behind you. \n'How do I get out of here?!'" +
-            "\nThere has to be a way to fix this bug problem.\n";
-
     @Override
-    /**
-     * gets the name of the room
-     * @return the name of the room
-     */
     public String getName(){
         return this.name;
     }
 
     @Override
-    /**
-     * gets the list of items in the room
-     * @return the list of items
-     */
-    public List<?> getItems(){
-        return this.items;
+    public List<Items> getItems(){
+        return this.exceptionRoomItems;
     }
 
     @Override
-    /**
-     * gets the description of the room
-     * @return the description
-     */
     public String getDescription(){
-        return this.description;
+        // Description given to player of the room
+        return "\nYou head down a path covered in spider webs.\n" +
+                "'I hate bugs' you say to yourself\n" +
+                "You can barely see but you navigate your through. 'It seems like the walls moving.'" +
+                "You reach the end and go through the doorway."+
+                "As you step into the room, you hear a crunch under your feet. " +
+                "What was that? \nYou look down only to see bugs crawling all over you feet! \n'AHHH' You shake them " +
+                "off and think about running out of the door, but you stay calm. \n" +
+                "\nThere has to be a way to fix this bug problem.\n";
     }
 
     @Override
-    /**
-     * gets the completion status of a room
-     * @return the bool of the completion status of the room
-     */
-    public boolean getCompletion() {
+    public boolean GetCompletion() {
         return this.complete;
     }
 
     @Override
-    /**
-     * changes the completion status of a room if the players finds the solution
-     * @param b bool the completion status will be set to
-     */
-    void setCompletion(boolean b) {
+    void IsCompletion(boolean b) {
         this.complete = b;
     }
 
@@ -78,5 +60,13 @@ public class ExceptionRoom extends Rooms
     void failRoomChallenge() {
         // TODO How does the player fail this challenge
         //  what will happen if the player fails
+    }
+
+    public List<Items> getExceptionRoomItems() {
+        return exceptionRoomItems;
+    }
+
+    public void setExceptionRoomItems(List<Items> exceptionRoomItems) {
+        this.exceptionRoomItems = exceptionRoomItems;
     }
 }
