@@ -2,8 +2,11 @@ package com.CoffeeQuest;
 
 
 import java.io.Console;
+import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAmount;
 import java.util.*;
 import java.util.function.Supplier;
 import java.util.ArrayList;
@@ -33,21 +36,48 @@ public class NPC {
     //Questions.add("What is one");
     //list of corresponding answers
     List<String> Answers = new ArrayList<String>(3);
+    LocalDateTime dueDate;
+    Supplier<LocalDateTime> s;
+    Instant begin;
 
     /**
      * Constructor
      */
     public NPC() {
         //add in questions
-        Questions.add("What is one'");
-        Questions.add("What is two'");
-        Questions.add("What is three'");
-        Questions.add("What is four'");
+        Questions.add("What Does this Output?: \n"+
+                "\tstatic List<String> strings = new ArrayList<String>();\n" +
+                "\t\tstatic String greet = \"Hello Dungeon\";\n" +
+                "\t\tstatic String halt = \"Who goes there?\";\n" +
+                "\t\tstatic String look = \"Where am I?\";\n" +
+                "\t\t\n" +
+                "\t\tpublic static void main(String[] args)\n" +
+                "\t\t{\n" +
+                "\t\t\t\t\tstrings.add(look);\n" +
+                "\t\t\t\t\tstrings.add(greet);\n" +
+                "\t\t\t\t\tstrings.add(halt);\n" +
+                "\t\t\t\t\tint i = 3;\n" +
+                "\t\t\t\t\twhile( i < 3)\n" +
+                "\t\t\t\t\t{\n" +
+                "\t\t\t\t\t\tstrings.set(0, strings.get(i-1));\n" +
+                "\t\t\t\t\t\tstrings.remove(i-1);\n" +
+                "\t\t\t\t\t\ti--;\n" +
+                "\t\t\t\t\t}\n" +
+                "\t\t\t\t\tSystem.out.println(strings.get(1));\n" +
+                "\t\t}'");
+        Questions.add("Yes or No: Would this code segment work?: \n" +  "\"if(Reply.toLowerCase() == Answers.get(q1)){}\"'");
+        Questions.add("Yes or No: Will this code compile?: \n" + "\"int i;  while(i < 10) {i++;}'");
+        Questions.add("What Java class might I use if I wanted to display your Exam's dueDate?'");
+
+
+
         //add in answers
-        Answers.add("1");
-        Answers.add("2");
-        Answers.add("3");
-        Answers.add("4");
+        Answers.add("Hello Dungeon");
+        Answers.add("no");
+        //should be Reply.toLowerCase().equals(Answers.get(q1)
+        Answers.add("no");
+        //i isn't initialized
+        Answers.add("localdatetime");
     }
 
     /**
@@ -58,8 +88,10 @@ public class NPC {
     //Greet Player
     public void GreetPlayer() {
         //Potential way to set a 'Due Date' for the quiz, this gets the localdatetime and sets the due date a minute after it
-        Supplier<LocalDateTime> s = LocalDateTime::now;
-        LocalDateTime dueDate = s.get().plusMinutes(1);
+        //Supplier<LocalDateTime>
+                s = LocalDateTime::now;
+        //LocalDateTime + 1
+        dueDate = s.get().plusMinutes(1);
         //Formating it into a more readable format
         DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         System.out.println("Silhouetted Man: 'Confused? Didn't you remember you that you had a quiz today? Well, don't worry about it. It's really simple,just three short answers that you can even try to answer a second time if you get them wrong. \n" +
@@ -68,7 +100,7 @@ public class NPC {
 
         long delay = 60000l;
         timer.schedule(time, delay);
-
+        begin = Instant.now();
 
         //Determine random questions
         SetupQuestions();
@@ -96,8 +128,10 @@ public class NPC {
         q3 = rad.nextInt(4);
         //check if the question was already taken, and loop through if needed
         while (q3 == q1 || q3 == q2) {
-            q3 = rad.nextInt(4);
+            q3 = rad.nextInt(4); int q = 0;
         }
+
+
     }
 
     /**
@@ -116,7 +150,7 @@ public class NPC {
         //get user response
         String answer1 = scanner.nextLine();
         //if the user response is correct
-        if (answer1.toLowerCase().equals(Answers.get(q1))) {
+        if (answer1.toLowerCase().equals(Answers.get(q1).toLowerCase())) {
             System.out.println("Silhouetted Man: 'Good answer, you might actually have a slight chance to escape.'");
             AskPlayerQuestion2();
         }
@@ -152,7 +186,7 @@ public class NPC {
         //get user response
         String answer2 = scanner.nextLine();
         //if the user response is correct
-        if (answer2.toLowerCase().equals(Answers.get(q2))) {
+        if (answer2.toLowerCase().equals(Answers.get(q2).toLowerCase())) {
             System.out.println("Silhouetted Man: 'Another good answer. Maybe I will finally get to see what happens when somebody passes this quiz.'");
 
             AskPlayerQuestion3();
@@ -187,8 +221,10 @@ public class NPC {
         //get user response
         String answer3 = scanner.nextLine();
         //if the user response is correct
-        if (answer3.toLowerCase().equals(Answers.get(q3))) {
-            System.out.println("Silhouetted Man: 'Well this is a first, three correct answers. You have passed the Final Exam. As such you can now leave the dungeon.'");
+        if (answer3.toLowerCase().equals(Answers.get(q3).toLowerCase())) {
+           Instant end = Instant.now();
+           long elapsed = 60 - Duration.between(begin, end).toSeconds();
+            System.out.println("Silhouetted Man: 'Well this is a first, three correct answers. You have passed the Final Exam, with "+ elapsed + " seconds to go, As such you can now leave the dungeon.'");
             quizPass();
         }
         //if the user answer incorrectly for the first time
