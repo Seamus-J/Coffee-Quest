@@ -12,16 +12,15 @@ public class Player {
     private Rooms room;
     private ArrayList<Items> inventory;
     private List<Items> roomInventory;
-    private Scanner input = new Scanner(System.in);
-    private Commands cmds = new Commands();
-    private Items item;
+    private final Scanner input = new Scanner(System.in);
+    private final Commands cmds = new Commands();
 
     //Constructor
     public Player(Rooms room)
     {
         this.room = room;
         // Build a new array list of an inventory when the user starts the game.
-        setInventory(new ArrayList<Items>());
+        setInventory(new ArrayList<>());
         // Print out the lore and context of what's happening.
         System.out.println("\n\nWelcome to Coffee Quest! The text-based adventure game that leads you through trials and tribulations\n" +
                 "that you have to overcome in order to escape the perilous dungeons of the Java Master.\n\n" +
@@ -36,10 +35,10 @@ public class Player {
     /**
      * This method gets the user input and splits it into commands for the switch statement
      * and args for the if conditions
-     * @param inputCommand
+     * @param inputCommand what the player typed
      */
     public void getCommands(String inputCommand) {
-        String command = "";
+        String command;
         String args = "";
         String[] cmdString = inputCommand.split("\\s");
         command = cmdString[0];
@@ -68,7 +67,7 @@ public class Player {
                 boolean inInventory = false;
                 Items holder = null;
 
-                // Loop thru inventory to try and find the item
+                // Loop through inventory to try and find the item
                 for(Items i : inventory){
                     if (i.getName().equals(args.toLowerCase(Locale.ROOT))){
                         inInventory = true;
@@ -103,7 +102,7 @@ public class Player {
                             } else {
                                 System.out.println(CoffeeQuest.finalExamRoom.getDescription());
                             }
-                        } else if (this.room.getName() == "Concurrency Room") {
+                        } else if (Objects.equals(this.room.getName(), "Concurrency Room")) {
 
                             // If the player leaves without completing the room
                             if (!this.room.GetCompletion()){
@@ -277,7 +276,7 @@ public class Player {
                 CoffeeQuest.npc.GreetPlayer();
                 break;
             case "whatis":
-                item = cmds.getItem(args);
+                Items item = cmds.getItem(args);
                 System.out.println(item.getName() + " is " + item.getDescription());
                 break;
             case "inventory":
@@ -417,22 +416,10 @@ public class Player {
         }
     }
 
-    //Get inventory
-    private ArrayList<Items> getInventory()
-    {
-        return inventory;
-    }
-
     //Set inventory
     private void setInventory(ArrayList<Items>inventory)
     {
         this.inventory = inventory;
-    }
-
-    //Return room player is currently in
-    private Rooms GetRoom()
-    {
-        return room;
     }
 
     //Set the current room as the player's location
@@ -442,28 +429,6 @@ public class Player {
     }
 
     // TO DO: class for using items(to be designed based off of items)
-
-    private void showItems()
-    {
-        System.out.println("Your inventory: ");
-        System.out.println();
-
-        //Check to see if there are items in inventory
-        if(inventory.size()==0)
-        {
-            System.out.println("There are no items in your inventory");
-        }
-        else
-        {
-            //Loop through entire inventory, listing each item
-            for(int x=0; x<inventory.size(); x++)
-            {
-                System.out.println(inventory.get(x));
-            }
-        }
-        //Print a blank line to create space for user entry
-        System.out.println();
-    }
 
     private void transferItem(Items x, List<Items> fromList, List<Items> toList){
         fromList.remove(x);
