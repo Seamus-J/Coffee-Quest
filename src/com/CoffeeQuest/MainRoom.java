@@ -14,10 +14,10 @@ public class MainRoom extends Rooms
     private boolean complete = false;
 
     // Description given to player of the room
-    private final String description = "The lights are flickering on and off and there is a loud humming noise \nthat" +
-            " seems to pulsing on and off. You see two generators that seem \nto be trying to run at the same" +
-            " time, but there doesn't seem to be enough power to \nkeep them both going at once. How can I " +
-            "keep these lights?\n";
+    private final String description = "\nYou look around, dazed and confused. The room is damp and dim.\n" +
+            "'Where am I?' You take a look around and see 4 different pathways around you each in a different direction.\n" +
+            "One to the north, one to the east, one to the south, and one to the west.\n" +
+            "'I have to get out of here, where should I go first?'\n";
 
     @Override
     public String getName(){

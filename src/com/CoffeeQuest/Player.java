@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class Player {
     // 2.2 --Example of encapsulation (1)--also note the public methods and use of get/set methods
@@ -137,9 +138,11 @@ public class Player {
                             }
 
                             // Display items in the room
+                            // 4.5 Stream
                             roomInventory = this.room.getItems();
+                            Stream<List> s = Stream.of(roomInventory);
                             System.out.println("Objects in room: ");
-                            roomInventory.forEach(x -> System.out.println(x));
+                            s.forEach(System. out::println);
                         } else {
                             System.out.println("\nThere is nothing in that direction");
                         }
@@ -164,9 +167,11 @@ public class Player {
                             }
 
                             // Display items in the room
+                            // 4.5 Stream
                             roomInventory = this.room.getItems();
+                            Stream<List> s = Stream.of(roomInventory);
                             System.out.println("Objects in room: ");
-                            roomInventory.forEach(x -> System.out.println(x));
+                            s.forEach(System. out::println);
 
                         } else if (Objects.equals(this.room.getName(), "Infinite Loop")) {
                             // If the player leaves without completing the room
@@ -202,9 +207,11 @@ public class Player {
                             }
 
                             // Display the items in the room
+                            // 4.5 Stream
                             roomInventory = this.room.getItems();
+                            Stream<List> s = Stream.of(roomInventory);
                             System.out.println("Objects in room: ");
-                            roomInventory.forEach(x -> System.out.println(x));
+                            s.forEach(System. out::println);
 
                         } else if (Objects.equals(this.room.getName(), "Exception Room")) {
 
