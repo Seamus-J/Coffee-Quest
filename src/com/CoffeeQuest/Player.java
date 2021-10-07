@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Scanner;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public class Player {
@@ -12,6 +14,8 @@ public class Player {
     private Rooms room;
     private ArrayList<Items> inventory;
     private List<Items> roomInventory;
+
+    // 1.6 Use of final keyword
     private final Scanner input = new Scanner(System.in);
     private final Commands cmds = new Commands();
 
@@ -57,10 +61,6 @@ public class Player {
                 }
                 break;
             case "quit": cmds.quit();
-                break;
-            case "where am i": // Setup where am I command
-                // TODO: Repeat where the user moved to.
-                room.getDescription();
                 break;
             case "use":
                 // To tell if the player has it in their inventory
@@ -166,11 +166,10 @@ public class Player {
                             }
 
                             // Display items in the room
-                            // 4.5 Stream
+                            // 2.1 lambda
                             roomInventory = this.room.getItems();
-                            Stream<List> s = Stream.of(roomInventory);
                             System.out.println("Objects in room: ");
-                            s.forEach(System. out::println);
+                            roomInventory.forEach(s -> System.out.println(s));
 
                         } else if (Objects.equals(this.room.getName(), "Infinite Loop")) {
                             // If the player leaves without completing the room
@@ -206,11 +205,10 @@ public class Player {
                             }
 
                             // Display the items in the room
-                            // 4.5 Stream
+                            //2.1 lambda
                             roomInventory = this.room.getItems();
-                            Stream<List> s = Stream.of(roomInventory);
                             System.out.println("Objects in room: ");
-                            s.forEach(System. out::println);
+                            roomInventory.forEach(s -> System.out.println(s));
 
                         } else if (Objects.equals(this.room.getName(), "Exception Room")) {
 
@@ -234,6 +232,7 @@ public class Player {
             System.out.println(room.getDescription());
             roomInventory = this.room.getItems();
             System.out.println("Objects in room: ");
+            // 2.1 lambda
             roomInventory.forEach(x -> System.out.println(x));
             break;
         case "pickup":
@@ -282,13 +281,16 @@ public class Player {
             case "inventory":
 //              Return all the items in the inventory.
 //              Big brain move right here.... - Billy ;)
+                // 4.5 Lambda example
+                // 1.4.a toString example
                 System.out.println("You have the following items in your inventory: ");
-                inventory.forEach(x -> System.out.println(x));
+                inventory.forEach(x -> System.out.println(x.toString()));
                 break;
            case "cheat":
                CoffeeQuest.concurrencyRoom.IsCompletion(true);
                 CoffeeQuest.exceptionRoom.IsCompletion(true);
                 CoffeeQuest.infiniteLoopRoom.IsCompletion(true);
+                break;
             default: System.out.println("Didn't understand that command");
         }
     }

@@ -88,8 +88,8 @@ public class NPC {
     //Greet Player
     public void GreetPlayer() {
         //Potential way to set a 'Due Date' for the quiz, this gets the localdatetime and sets the due date a minute after it
-        //Supplier<LocalDateTime>
-                s = LocalDateTime::now;
+        // 4.2 Supplier example
+        Supplier<LocalDateTime> s = LocalDateTime::now;
         //LocalDateTime + 1
         dueDate = s.get().plusMinutes(1);
         //Formating it into a more readable format

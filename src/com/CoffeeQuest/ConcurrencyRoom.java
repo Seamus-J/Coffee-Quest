@@ -33,7 +33,7 @@ public class ConcurrencyRoom extends Rooms
                 "The lights are flickering on and off and there is a loud humming noise \nthat" +
                 " seems to pulsing on and off. You see two generators that seem \nto be trying to run at the same" +
                 " time, but there doesn't seem to be enough power to \nkeep them both going at once. How can I " +
-                "keep these lights?\n";
+                "keep these lights?          (South Room)\n";
     }
 
     @Override

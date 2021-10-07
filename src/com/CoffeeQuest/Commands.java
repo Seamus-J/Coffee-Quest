@@ -14,7 +14,6 @@ public class Commands {
 //    Items itemsArray = {};
     String[] commands = {"help", "move", "talk", "pickup", "use", "drop", "quit", "look"};
     String[] commandDescription = {"Get this list", "Move to the selected room.", "Talk to an NPC", "Pickup an item", "Use a selected Item", "Drop an item", "Quit the game", "Gives brief description of surroundings"};
-    Rooms currentRoom;
 
     public Commands() {
         // do nothing.
@@ -32,7 +31,7 @@ public class Commands {
                 i++;
             }
         }
-        System.out.println("");
+        System.out.println(" ");
     }
 
     /**

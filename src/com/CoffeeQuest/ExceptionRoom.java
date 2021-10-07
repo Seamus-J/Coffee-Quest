@@ -33,7 +33,7 @@ public class ExceptionRoom extends Rooms
                 "As you step into the room, you hear a crunch under your feet. " +
                 "What was that? \nYou look down only to see bugs crawling all over you feet! \n'AHHH' You shake them " +
                 "off and think about running out of the door, but you stay calm. \n" +
-                "\nThere has to be a way to fix this bug problem.\n";
+                "\nThere has to be a way to fix this bug problem.        (East Room)\n";
     }
 
     @Override
