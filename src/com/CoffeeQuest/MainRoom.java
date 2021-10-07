@@ -44,36 +44,6 @@ public class MainRoom extends Rooms
         this.complete = b;
     }
 
-    /**
-     *
-     * @param c ConcurrencyRoom
-     * @param e ExceptionRoom
-     * @param f FinalExamRoom
-     * @param i InfiniteLoopRoom
-     */
-    public void completeRoomChallenge( ConcurrencyRoom c, ExceptionRoom e, FinalExamRoom f, InfiniteLoopRoom i) {
-
-        // If all rooms complete, set main room completion to true and allow player to complete the game
-        if (c.GetCompletion() &&
-                e.GetCompletion() &&
-                f.GetCompletion() &&
-                i.GetCompletion())
-        {
-            // Completion set to true
-            this.IsCompletion(true);
-
-            // TODO Congratulation message on winning
-        }
-    }
-
-    /**
-     * Event after the player fails the room challenge
-     */
-    public void failRoomChallenge() {
-        // TODO How does the player fail this challenge
-        //  what will happen if the player fails
-    }
-
     public List<Items> getMainRoomItems() {
         return mainRoomItems;
     }

@@ -46,22 +46,6 @@ public class ExceptionRoom extends Rooms
         this.complete = b;
     }
 
-    /**
-     * Event after the player successfully completes the room challenge
-     */
-    void completeRoomChallenge() {
-        // TODO How does the player complete this room's challenge
-        //  what will happen when the player completes this room
-    }
-
-    /**
-     * Event after the player fails the room challenge
-     */
-    void failRoomChallenge() {
-        // TODO How does the player fail this challenge
-        //  what will happen if the player fails
-    }
-
     public List<Items> getExceptionRoomItems() {
         return exceptionRoomItems;
     }

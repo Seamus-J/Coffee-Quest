@@ -274,7 +274,6 @@ public class Player {
             }
             break;
             case "talk":
-                // TODO: Find a way to talk to an NPC
                 CoffeeQuest.npc.GreetPlayer();
                 break;
             case "whatis":

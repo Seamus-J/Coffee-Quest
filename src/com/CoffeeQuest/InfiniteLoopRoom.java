@@ -47,22 +47,6 @@ public class InfiniteLoopRoom extends Rooms
     }
 
     /**
-     * Event after the player successfully completes the room challenge
-     */
-    void completeRoomChallenge() {
-        // TODO How does the player complete this room's challenge
-        //  what will happen when the player completes this room
-    }
-
-    /**
-     * Event after the player fails the room challenge
-     */
-    void failRoomChallenge() {
-        // TODO How does the player fail this challenge
-        //  what will happen if the player fails
-    }
-
-    /**
      * Gets the rooms list of items
      * @return the list of items
      */
