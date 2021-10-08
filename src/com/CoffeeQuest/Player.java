@@ -280,10 +280,10 @@ public class Player {
                 System.out.println("You have the following items in your inventory: ");
                 inventory.forEach(x -> System.out.println(x));
                 break;
-            case "cheat":
-                CoffeeQuest.concurrencyRoom.setCompletion(true);
-                CoffeeQuest.exceptionRoom.setCompletion(true);
-                CoffeeQuest.infiniteLoopRoom.setCompletion(true);
+           case "cheat":
+               CoffeeQuest.concurrencyRoom.IsCompletion(true);
+                CoffeeQuest.exceptionRoom.IsCompletion(true);
+                CoffeeQuest.infiniteLoopRoom.IsCompletion(true);
             default: System.out.println("Didn't understand that command");
         }
     }
