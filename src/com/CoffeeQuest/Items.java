@@ -14,5 +14,6 @@ public abstract class Items {
     //Method to pull the description of the item
     abstract String getDescription();
 
+    //Method to pull the 'use item' description of the item
     abstract String useItemDescription();
 }

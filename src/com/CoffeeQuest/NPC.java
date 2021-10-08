@@ -135,10 +135,10 @@ public class NPC {
     }
 
     /**
-     * Each AskPlayerQuestion#() method works the same, and I' am considering working them into one combined method in future versions of the NPC class.
+     * Each AskPlayerQuestion#() method works the same, and I am considering working them into one combined method in future versions of the NPC class.
      * It prints the first question that was selected in the SetupQuestions() method, and uses a scanner to get the user response. It checks the response to see
-     * if it matches, this is not setup to be very forgiving, and some work needs to be put into improving its recognition of answers. It also checks to see if the user chosses to quit
-     * the quiz, and calls the quitQuiz() method in that case. Finally, if the answer is wrong it checks the number of previous wrong answers, and gives an approriate response to the number.
+     * if it matches, this is not setup to be very forgiving, and some work needs to be put into improving its recognition of answers. It also checks to see if the user chooses to quit
+     * the quiz, and calls the quitQuiz() method in that case. Finally, if the answer is wrong it checks the number of previous wrong answers, and gives an appropriate response to the number.
      */
 
     //Ask Player Question1

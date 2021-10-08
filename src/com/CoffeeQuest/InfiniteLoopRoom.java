@@ -33,7 +33,7 @@ public class InfiniteLoopRoom extends Rooms
                 "You finally reach a metal door, it looks heavy but you attempt to push it open.\n"+
                 "You enter the room, it is pitch black and dead silent. You let out a 'Hello?'\n" +
                 "The room immediately starts to echo, and it doesn't fade away.\n" +
-                "What is in here? Why won't the echo stop? Is this going to go on forever??     (West Room)";
+                "What is in here? Why won't the echo stop? Is this going to go on forever??     (West Room)\n";
     }
 
     @Override
