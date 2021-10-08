@@ -1,13 +1,17 @@
 package com.CoffeeQuest;
 
 import java.util.*;
-
+/**
+ * The CoffeeQuest application is a text-based adventure game
+ *
+ * @authors James Heminger, Seamus Johnson, Alexander Morgan, Billy Rintamaki, Jared Wadzinski
+ * @version 1.0
+ */
 public class Main {
 
-    public static void main(String[] args)
-	{
+    public static void main(String[] args) throws IncorrectFileNameException {
         //Create item objects
-        Hammer hammer = new Hammer();
+        Hammer hammer = Hammer.getInstance();
         Flashlight flashlight = new Flashlight();
         KitKat kitKat = new KitKat();
         Poison poison = new Poison();

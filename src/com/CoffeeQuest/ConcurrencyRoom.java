@@ -33,7 +33,7 @@ public class ConcurrencyRoom extends Rooms
                 "The lights are flickering on and off and there is a loud humming noise \nthat" +
                 " seems to pulsing on and off. You see two generators that seem \nto be trying to run at the same" +
                 " time, but there doesn't seem to be enough power to \nkeep them both going at once. How can I " +
-                "keep these lights?\n";
+                "keep these lights?          (South Room)\n";
     }
 
     @Override
@@ -45,23 +45,6 @@ public class ConcurrencyRoom extends Rooms
     void IsCompletion(boolean b) {
         this.complete = b;
     }
-
-    /**
-     * Event after the player successfully completes the room challenge
-     */
-    public void completeRoomChallenge() {
-        // TODO How does the player complete this room's challenge
-        //  what will happen when the player completes this room
-    }
-
-    /**
-     * Event after the player fails the room challenge
-     */
-    public void failRoomChallenge() {
-        // TODO How does the player fail this challenge
-        //  what will happen if the player fails
-    }
-
 
     public List<Items> getConcurrencyItems() {
         return concurrencyItems;

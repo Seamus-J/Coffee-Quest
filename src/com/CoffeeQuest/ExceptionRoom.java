@@ -33,7 +33,7 @@ public class ExceptionRoom extends Rooms
                 "As you step into the room, you hear a crunch under your feet. " +
                 "What was that? \nYou look down only to see bugs crawling all over you feet! \n'AHHH' You shake them " +
                 "off and think about running out of the door, but you stay calm. \n" +
-                "\nThere has to be a way to fix this bug problem.\n";
+                "\nThere has to be a way to fix this bug problem.        (East Room)\n";
     }
 
     @Override
@@ -44,22 +44,6 @@ public class ExceptionRoom extends Rooms
     @Override
     void IsCompletion(boolean b) {
         this.complete = b;
-    }
-
-    /**
-     * Event after the player successfully completes the room challenge
-     */
-    void completeRoomChallenge() {
-        // TODO How does the player complete this room's challenge
-        //  what will happen when the player completes this room
-    }
-
-    /**
-     * Event after the player fails the room challenge
-     */
-    void failRoomChallenge() {
-        // TODO How does the player fail this challenge
-        //  what will happen if the player fails
     }
 
     public List<Items> getExceptionRoomItems() {

@@ -1,9 +1,25 @@
 package com.CoffeeQuest;
 
+
+//2.3--Example of the Singleton Pattern
 public class Hammer extends Items{
+
+    private static Hammer hammer = null;
+
     private final String itemName = "hammer";
     private final String desc = "This tool could be useful for smashing";
 
+    private Hammer() {
+    }
+
+    public static Hammer getInstance()
+    {
+        if(hammer == null)
+        {
+            hammer = new Hammer();
+        }
+        return hammer;
+    }
 
     @Override
     String getName() {return itemName;}

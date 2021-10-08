@@ -30,10 +30,10 @@ public class InfiniteLoopRoom extends Rooms
     public String getDescription(){
         // Description given to player of the room
         return "\nYou cautiously start to step forwards to the north down a long hallway that never seems to never end \n." +
-                "You finally reach a metal door, it looks heavy but you attempt to push it open."+
-                "You enter the room, it is pitch black and dead silent. You let out a 'Hello?' " +
-                "The room immediately starts to echo, and it doesn't fade away. What is in here?" +
-                " Why won't the echo stop? Is this going to go on forever??";
+                "You finally reach a metal door, it looks heavy but you attempt to push it open.\n"+
+                "You enter the room, it is pitch black and dead silent. You let out a 'Hello?'\n" +
+                "The room immediately starts to echo, and it doesn't fade away.\n" +
+                "What is in here? Why won't the echo stop? Is this going to go on forever??     (West Room)\n";
     }
 
     @Override
@@ -44,22 +44,6 @@ public class InfiniteLoopRoom extends Rooms
     @Override
     void IsCompletion(boolean b) {
         this.complete = b;
-    }
-
-    /**
-     * Event after the player successfully completes the room challenge
-     */
-    void completeRoomChallenge() {
-        // TODO How does the player complete this room's challenge
-        //  what will happen when the player completes this room
-    }
-
-    /**
-     * Event after the player fails the room challenge
-     */
-    void failRoomChallenge() {
-        // TODO How does the player fail this challenge
-        //  what will happen if the player fails
     }
 
     /**
