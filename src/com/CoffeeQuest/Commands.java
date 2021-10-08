@@ -7,7 +7,7 @@ package com.CoffeeQuest;
 public class Commands {
 
     private final String[] commands = {"help", "move", "talk", "pickup", "use", "drop", "quit", "look"};
-    private final String[] commandDescription = {"Get this list", "Move to the selected room.", "Talk to an NPC", "Pickup an item", "Use a selected Item", "Drop an item", "Quit the game", "Gives brief description of surroundings"};
+    private final String[] commandDescription = {"Get this list", "Move to the selected room", "Talk to an NPC", "Pickup an item", "Use a selected Item", "Drop an item", "Quit the game", "Gives brief description of surroundings"};
 
     /**
      * Method to list commands available to the player
