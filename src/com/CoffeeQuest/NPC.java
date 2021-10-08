@@ -262,6 +262,7 @@ public class NPC {
 
     /**
      * This method will set the FinalExamRoom.setCompletion value to true when called
+     * @throws IncorrectFileNameException
      */
     //this method is called when the player has successfully completed the quiz
     public void quizPass() throws IncorrectFileNameException {

@@ -6,12 +6,21 @@ package com.CoffeeQuest;
  */
 public abstract class Items {
 
-    // Method to pull the name of the item
+    /**
+     * gets the name of the item
+     * @return string
+     */
     abstract String getName();
 
-    //Method to pull the description of the item
+    /**
+     * gets the description of the item
+     * @return string
+     */
     abstract String getDescription();
 
-    //Method to pull the 'use item' description of the item
+    /**
+     * gets the description when item is used properly
+     * @return string
+     */
     abstract String useItemDescription();
 }

@@ -13,6 +13,10 @@ public class CoffeeQuest {
     public static NPC npc = new NPC();
     Player player = new Player(mainRoom);
 
+    /**
+     * CoffeeQuest Constructor
+     * @throws IncorrectFileNameException
+     */
     public CoffeeQuest() throws IncorrectFileNameException {
     }
 }

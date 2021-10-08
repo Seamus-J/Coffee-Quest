@@ -17,17 +17,29 @@ public class InfiniteLoopRoom extends Rooms
     // Boolean to keep record of whether the player has completed to room
     private boolean complete = false;
 
+    /**
+     * Gets the name of the room
+     * @return string name
+     */
     @Override
     public String getName(){
         // Name of the room
         return "Infinite Loop";
     }
 
+    /**
+     * gets the list of items in the room
+     * @return list of items
+     */
     @Override
     public List<Items> getItems(){
         return this.infiniteLoopItems;
     }
 
+    /**
+     * gets the description of the room
+     * @return the description
+     */
     @Override
     public String getDescription(){
         // Description given to player of the room
@@ -38,11 +50,19 @@ public class InfiniteLoopRoom extends Rooms
                 "What is in here? Why won't the echo stop? Is this going to go on forever??     (West Room)\n";
     }
 
+    /**
+     * Gets the completion status
+     * @return true if room is complete, false if not
+     */
     @Override
     public boolean GetCompletion() {
         return this.complete;
     }
 
+    /**
+     * set the bool of the status
+     * @param b bool the completion status will be set to
+     */
     @Override
     void IsCompletion(boolean b) {
         this.complete = b;

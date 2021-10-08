@@ -14,18 +14,29 @@ public class ConcurrencyRoom extends Rooms
     // Boolean to keep record of whether the player has completed to room
     private boolean complete = false;
 
+    /**
+     * Gets the name of the room
+     * @return string
+     */
     @Override
     public String getName(){
         // Name of the room
         return "Concurrency Room";
     }
 
+    /**
+     * gets the list of items in the room
+     * @return string
+     */
     @Override
     public List<Items> getItems(){
         return this.getConcurrencyItems();
     }
 
-
+    /**
+     * gets the description of the room when you enter it
+     * @return string
+     */
     @Override
     public String getDescription(){
         // Description given to player of the room
@@ -38,20 +49,36 @@ public class ConcurrencyRoom extends Rooms
                 "keep these lights?          (South Room)\n";
     }
 
+    /**
+     * gets the boolean completion status of the room
+     * @return bool
+     */
     @Override
     public boolean GetCompletion() {
         return this.complete;
     }
 
+    /**
+     * set the boolean completino status of the room
+     * @param b bool the completion status will be set to
+     */
     @Override
     void IsCompletion(boolean b) {
         this.complete = b;
     }
 
+    /**
+     * gets the list of items in the room
+     * @return list<items>/
+     * */
     public List<Items> getConcurrencyItems() {
         return concurrencyItems;
     }
 
+    /**
+     * sets the list of items in the room
+     *
+     */
     public void setConcurrencyItems(List<Items> concurrencyItems) {
         this.concurrencyItems = concurrencyItems;
 
