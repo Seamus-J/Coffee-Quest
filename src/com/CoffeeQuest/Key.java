@@ -1,6 +1,6 @@
 package com.CoffeeQuest;
 
-public class Key extends Items{
+public abstract class Key extends Items{
     private final String itemName = "key";
     private final String desc = "Keys can be used to open locks.";
 

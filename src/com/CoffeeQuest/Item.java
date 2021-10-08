@@ -1,6 +1,6 @@
 package com.CoffeeQuest;
 
-public class Item extends Items {
+public abstract class Item extends Items {
     private String itemName;
     private String desc;
     @Override

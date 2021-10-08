@@ -39,6 +39,7 @@ public class NPC {
     LocalDateTime dueDate;
     Supplier<LocalDateTime> s;
     Instant begin;
+    Calendar c = Calendar.getInstance(TimeZone.getTimeZone("CT"));
 
     /**
      * Constructor
@@ -270,7 +271,7 @@ public class NPC {
                 "You step over to door and prepare to pass through it, but hesitate on the last step. You turn and consider the dungeon, thinking to \n" +
                 "yourself 'Have I truly learned everything I needed to? Am I prepared to go on?' With a final decision you turn back to the door and \n" +
                 "tell yourself 'Yes, yes I have.' With that final thought you step through the door and exit the dungeon.");
-        System.out.println("/////Congratulations you have Beaten the game 'CoffeeQuest' the Text Based Adventure. Thank you for playing./////");
+        System.out.println("/////Congratulations you have Beaten the game 'CoffeeQuest' the Text Based Adventure. Thank you for playing. Time of completion: " + c.getTime() + "/////");
 
         System.exit(0);
     }
