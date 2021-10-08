@@ -277,7 +277,7 @@ public class NPC {
         try{
             winMessage = new Scanner(file);
             while (winMessage.hasNext()){
-                System.out.println(winMessage.nextLine());
+                System.out.println(winMessage.nextLine() + " Time of completion: " + c.getTime());
             }
         }
          catch (FileNotFoundException e){
