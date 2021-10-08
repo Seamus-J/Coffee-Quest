@@ -47,7 +47,7 @@ public class NPC {
         //add in questions
         Questions.add("What Does this Output?: \n"+
                 "\tstatic List<String> strings = new ArrayList<String>();\n" +
-                "\t\tstatic String greet = \"Hello Dungeon\";\n" +
+                "\t\tstatic String greet = \"Hello Dungeon.\";\n" +
                 "\t\tstatic String halt = \"Who goes there?\";\n" +
                 "\t\tstatic String look = \"Where am I?\";\n" +
                 "\t\t\n" +
@@ -64,20 +64,23 @@ public class NPC {
                 "\t\t\t\t\t\ti--;\n" +
                 "\t\t\t\t\t}\n" +
                 "\t\t\t\t\tSystem.out.println(strings.get(1));\n" +
-                "\t\t}'");
+                "\t\t}\n" +
+                "Answers: \n" +
+                "A.Hello Dungeon   B.Compile Error  C.Who goes there?  D.Where am I? ");
         Questions.add("Yes or No: Would this code segment work?: \n" +  "\"if(Reply.toLowerCase() == Answers.get(q1)){}\"'");
         Questions.add("Yes or No: Will this code compile?: \n" + "\"int i;  while(i < 10) {i++;}'");
-        Questions.add("What Java class might I use if I wanted to display your Exam's dueDate?'");
+        Questions.add("What Java class might I use if I wanted to display your Exam's dueDate? \n" +
+                      "A.LocalDate  B.LocalTime  C.LocalDateTime  D.TemporalUnit");
 
 
 
         //add in answers
-        Answers.add("Hello Dungeon");
+        Answers.add("a");
         Answers.add("no");
         //should be Reply.toLowerCase().equals(Answers.get(q1)
         Answers.add("no");
         //i isn't initialized
-        Answers.add("localdatetime");
+        Answers.add("c");
     }
 
     /**
@@ -91,14 +94,14 @@ public class NPC {
         //Supplier<LocalDateTime>
                 s = LocalDateTime::now;
         //LocalDateTime + 1
-        dueDate = s.get().plusMinutes(1);
+        dueDate = s.get().plusMinutes(2);
         //Formating it into a more readable format
         DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         System.out.println("Silhouetted Man: 'Confused? Didn't you remember you that you had a quiz today? Well, don't worry about it. It's really simple,just three short answers that you can even try to answer a second time if you get them wrong. \n" +
                 "You should already know that of course, and also that if you give three incorrect answers between the three questions you will fail the quiz, and that failing the exam traps you in the dungeon forever. \n" +
                 "Of course you knew all of that already, after all you did study right? I expect you should also know that the exam due date is " + dueDate.format(formatTime) + ", so you had best get to it.'");
 
-        long delay = 60000l;
+        long delay = 120000l;
         timer.schedule(time, delay);
         begin = Instant.now();
 
