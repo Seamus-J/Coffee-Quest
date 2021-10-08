@@ -284,7 +284,7 @@ public class Player {
                 CoffeeQuest.npc.GreetPlayer();
                 break;
             case "whatis":
-                item = cmds.getItem(args);
+                Items item = cmds.getItem(args);
                 System.out.println(item.getName() + ": " + item.getDescription());
                 break;
             case "inventory":
