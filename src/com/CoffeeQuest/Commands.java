@@ -1,27 +1,13 @@
 package com.CoffeeQuest;
 
-
-//TODO: When the items are created, create an enum for the switch-case statement to utilize.
-//enum ItemTypes {
-//    HAMMER,
-//    NAIL,
-//    FLASHLIGHT
-//}
-
 public class Commands {
 
-//    Create item array
-//    Items itemsArray = {};
-    String[] commands = {"help", "move", "talk", "pickup", "use", "drop", "quit", "look"};
-    String[] commandDescription = {"Get this list", "Move to the selected room.", "Talk to an NPC", "Pickup an item", "Use a selected Item", "Drop an item", "Quit the game", "Gives brief description of surroundings"};
-    Rooms currentRoom;
-
-    public Commands() {
-        // do nothing.
-    }
+    private final String[] commands = {"help", "move", "talk", "pickup", "use", "drop", "quit", "look"};
+    private final String[] commandDescription = {"Get this list", "Move to the selected room.", "Talk to an NPC", "Pickup an item", "Use a selected Item", "Drop an item", "Quit the game", "Gives brief description of surroundings"};
+    private Rooms currentRoom;
 
     /**
-     *
+     * Method to list commands available to the player
      */
     public void listCommands() {
         System.out.println("List of commands:");
@@ -36,13 +22,18 @@ public class Commands {
     }
 
     /**
-     *
+     *Method to quit the game
      */
     public void quit() {
         System.out.println("Quitting game....");
         System.exit(0);
     }
 
+    /**
+     * This method is used to get an instance of an item
+     * @param arg the argument command from player input
+     * @return Items returns the selected item
+     */
     public Items getItem(String arg) {
         Items item = null;
         // Return the class of Item used to pickup, drop, or use.
@@ -51,7 +42,7 @@ public class Commands {
                 item = new Battery();
                 break;
             case "hammer":
-                item = new Hammer();
+                item = Hammer.getInstance();
                 break;
             case "flashlight":
                 item = new Flashlight();
