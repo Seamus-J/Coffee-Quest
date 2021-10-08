@@ -10,4 +10,7 @@ public class CoffeeQuest {
     public static MainRoom mainRoom = new MainRoom();
     public static NPC npc = new NPC();
     Player player = new Player(mainRoom);
+
+    public CoffeeQuest() throws IncorrectFileNameException {
+    }
 }

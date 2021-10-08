@@ -23,8 +23,7 @@ public class Player {
     /**
      * Class constructor.
      */
-    public Player(Rooms room)
-    {
+    public Player(Rooms room) throws IncorrectFileNameException {
         this.room = room;
         // Build a new array list of an inventory when the user starts the game.
         setInventory(new ArrayList<>());
@@ -40,7 +39,7 @@ public class Player {
      * and args for the if conditions
      * @param inputCommand what the player typed
      */
-    public void getCommands(String inputCommand) {
+    public void getCommands(String inputCommand) throws IncorrectFileNameException {
         String command;
         String args = "";
         String[] cmdString = inputCommand.split("\\s");
@@ -308,7 +307,7 @@ public class Player {
     /**
      * This method intakes the players commands
      */
-    public void input() {
+    public void input() throws IncorrectFileNameException {
         while (true) {
             System.out.println("What do you want to do next?");
             System.out.print("> ");

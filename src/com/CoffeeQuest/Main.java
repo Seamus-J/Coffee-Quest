@@ -9,8 +9,7 @@ import java.util.*;
  */
 public class Main {
 
-    public static void main(String[] args)
-	{
+    public static void main(String[] args) throws IncorrectFileNameException {
         //Create item objects
         Hammer hammer = Hammer.getInstance();
         Flashlight flashlight = new Flashlight();
