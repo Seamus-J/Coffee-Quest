@@ -1,5 +1,9 @@
 package com.CoffeeQuest;
 
+/** Represents a kitkat item.
+ * @author Seamus Johnson
+ * @since 1.0
+ */
 public class KitKat extends Items{
     private final String itemName = "kitkat";
     private final String desc = "Give me a BREAK of that KitKat bar";

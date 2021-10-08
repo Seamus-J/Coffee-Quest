@@ -1,5 +1,13 @@
 package com.CoffeeQuest;
 
+/** Represents a player.
+ * @author Seamus J
+ * @author Jared W
+ * @author James H
+ * @author Billy R
+ * @author alex
+ * @since 1.0
+ */
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;

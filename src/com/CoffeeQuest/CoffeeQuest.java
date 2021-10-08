@@ -1,7 +1,10 @@
 package com.CoffeeQuest;
 
 import java.util.Scanner;
-
+/** Represents the game Coffee Quest.
+ * @author Seamus Johnson
+ * @since 1.0
+ */
 public class CoffeeQuest {
     public static ConcurrencyRoom concurrencyRoom = new ConcurrencyRoom();
     public static  ExceptionRoom exceptionRoom = new ExceptionRoom();

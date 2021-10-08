@@ -1,6 +1,9 @@
 package com.CoffeeQuest;
 
-
+/** Represents a hammer.
+ * @author Jared W
+ * @since 1.0
+ */
 //2.3--Example of the Singleton Pattern
 public class Hammer extends Items{
 

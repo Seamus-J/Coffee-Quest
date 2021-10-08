@@ -2,6 +2,10 @@ package com.CoffeeQuest;
 
 import java.util.List;
 
+/** Represents the Final Exam Room.
+ * @author Seamus Johnson
+ * @since 1.0
+ */
 public class FinalExamRoom extends Rooms
 {
     // Name of the room

@@ -1,5 +1,9 @@
 package com.CoffeeQuest;
 
+/** The abstract class used to base all items off of.
+ * @author Alex
+ * @since 1.0
+ */
 public abstract class Items {
 
     //Name of the Item

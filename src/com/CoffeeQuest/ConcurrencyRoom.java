@@ -2,6 +2,10 @@ package com.CoffeeQuest;
 
 import java.util.List;
 
+/** Represents a the Concurrency Room.
+ * @author Seamus Johnson
+ * @since 1.0
+ */
 public class ConcurrencyRoom extends Rooms
 {
     // Name of the room

@@ -2,6 +2,10 @@ package com.CoffeeQuest;
 
 import java.util.List;
 
+/** Represents the main room.
+ * @author Seamus Johnson
+ * @since 1.0
+ */
 public class MainRoom extends Rooms
 {
     // Name of the room

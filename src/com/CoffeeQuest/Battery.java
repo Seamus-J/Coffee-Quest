@@ -1,5 +1,9 @@
 package com.CoffeeQuest;
 
+/** Represents a battery.
+        * @author Seamus Johnson
+        * @since 1.0
+        */
 public class Battery extends Items{
     private final String itemName = "battery";
     private final String desc = "This could power an entire block of houses";

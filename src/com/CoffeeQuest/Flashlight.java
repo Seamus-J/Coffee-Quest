@@ -1,5 +1,9 @@
 package com.CoffeeQuest;
 
+/** Represents a flashlight.
+ * @author Jared W
+ * @since 1.0
+ */
  public class Flashlight extends Items{
 
     private final String itemName = "flashlight";

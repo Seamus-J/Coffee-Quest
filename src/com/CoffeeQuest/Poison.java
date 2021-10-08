@@ -1,5 +1,9 @@
 package com.CoffeeQuest;
 
+/** Represents a poison object.
+ * @author Seamus Johnson
+ * @since 1.0
+ */
 public class Poison extends Items{
     private final String itemName = "poison";
     private final String desc = "This could wipe out anything";

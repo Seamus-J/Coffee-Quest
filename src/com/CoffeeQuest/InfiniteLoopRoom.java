@@ -2,6 +2,10 @@ package com.CoffeeQuest;
 
 import java.util.List;
 
+/** Represents the Infinite loop room.
+ * @author Seamus Johnson
+ * @since 1.0
+ */
 public class InfiniteLoopRoom extends Rooms
 {
     // Name of the room

@@ -1,5 +1,9 @@
 package com.CoffeeQuest;
 
+/** Represents the commands the player is able to make.
+ * @author Billy R
+ * @since 1.0
+ */
 public class Commands {
 
     private final String[] commands = {"help", "move", "talk", "pickup", "use", "drop", "quit", "look"};

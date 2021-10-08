@@ -2,6 +2,10 @@ package com.CoffeeQuest;
 
 import java.util.List;
 
+/** The abstract class used to base all rooms off of.
+ * @author Seamus Johnson
+ * @since 1.0
+ */
 public abstract class Rooms
 {
     /**
