@@ -1,5 +1,8 @@
 package com.CoffeeQuest;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -19,14 +22,14 @@ public class Player {
     // 1.6 Use of final keyword
     private final Scanner input = new Scanner(System.in);
     private final Commands cmds = new Commands();
-
     /**
      * Class constructor.
      */
-    public Player(Rooms room) throws IncorrectFileNameException {
+    public Player(Rooms room) throws IncorrectFileNameException{
         this.room = room;
         // Build a new array list of an inventory when the user starts the game.
         setInventory(new ArrayList<>());
+
         // Print out the lore and context of what's happening.
         System.out.println("\n\nWelcome to Coffee Quest! The text-based adventure game that leads you through trials and tribulations\n" +
                 "that you have to overcome in order to escape the perilous dungeons of the Java Master.\n\n" +
@@ -322,6 +325,7 @@ public class Player {
     {
         Items holder = null;
         //If the room contains the item, transfer it to the player's inventory
+        // 1.2 polymorphism example
         for(Items currentItem : roomInventory)
         {
             if(currentItem.getName().equals(itemName)){

@@ -41,6 +41,7 @@ public class NPC {
     LocalDateTime dueDate;
     Supplier<LocalDateTime> s;
     Instant begin;
+    // 5.1 example
     Calendar c = Calendar.getInstance(TimeZone.getTimeZone("CT"));
 
     /**
@@ -277,8 +278,9 @@ public class NPC {
         try{
             winMessage = new Scanner(file);
             while (winMessage.hasNext()){
-                System.out.println(winMessage.nextLine() + " Time of completion: " + c.getTime());
+                System.out.println(winMessage.nextLine());
             }
+            System.out.println(" Time of completion: " + c.getTime());
         }
          catch (FileNotFoundException e){
             if (Objects.equals(file.getName(), "Congrats")){
