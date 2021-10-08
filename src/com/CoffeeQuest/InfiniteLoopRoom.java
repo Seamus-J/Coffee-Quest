@@ -8,9 +8,6 @@ import java.util.List;
  */
 public class InfiniteLoopRoom extends Rooms
 {
-    // Name of the room
-    private final String name = "Infinite Loop";
-
     // A list of items in the room
     private List<Items> infiniteLoopItems;
 
@@ -22,7 +19,8 @@ public class InfiniteLoopRoom extends Rooms
 
     @Override
     public String getName(){
-        return this.name;
+        // Name of the room
+        return "Infinite Loop";
     }
 
     @Override
@@ -48,14 +46,6 @@ public class InfiniteLoopRoom extends Rooms
     @Override
     void IsCompletion(boolean b) {
         this.complete = b;
-    }
-
-    /**
-     * Gets the rooms list of items
-     * @return the list of items
-     */
-    public List<Items> getInfiniteLoopItems() {
-        return infiniteLoopItems;
     }
 
     /**

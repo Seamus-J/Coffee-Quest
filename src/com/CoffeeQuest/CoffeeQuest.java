@@ -1,6 +1,5 @@
 package com.CoffeeQuest;
 
-import java.util.Scanner;
 /** Represents the game Coffee Quest.
  * @author Seamus Johnson
  * @since 1.0

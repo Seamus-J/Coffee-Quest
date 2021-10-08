@@ -8,8 +8,6 @@ import java.util.List;
  */
 public class ExceptionRoom extends Rooms
 {
-    // Name of the room
-    private final String name = "Exception Room";
 
     // A list of items in the room
     private List<Items> exceptionRoomItems;
@@ -19,7 +17,8 @@ public class ExceptionRoom extends Rooms
 
     @Override
     public String getName(){
-        return this.name;
+        // Name of the room
+        return "Exception Room";
     }
 
     @Override
@@ -48,10 +47,6 @@ public class ExceptionRoom extends Rooms
     @Override
     void IsCompletion(boolean b) {
         this.complete = b;
-    }
-
-    public List<Items> getExceptionRoomItems() {
-        return exceptionRoomItems;
     }
 
     public void setExceptionRoomItems(List<Items> exceptionRoomItems) {

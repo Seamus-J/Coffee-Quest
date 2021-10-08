@@ -1,14 +1,12 @@
 package com.CoffeeQuest;
 
 
-import java.io.Console;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAmount;
 import java.util.*;
 import java.util.function.Supplier;
 import java.util.ArrayList;
@@ -22,7 +20,6 @@ import java.util.ArrayList;
 //Npc Version 1
 public class NPC {
     Scanner scanner = new Scanner(System.in);
-    FinalExamRoom examRoom = new FinalExamRoom();
 
     Timer timer = new Timer();
 
@@ -30,14 +27,12 @@ public class NPC {
     int q1, q2, q3;
     //total number of incorrect answers given
     int incorrectAnswers = 0;
-    //checks if this is the first attempt, effects dialog
-    int firstAttempt = 0;
 
     //list of possible questions, needs to b expanded with real questions
-    List<String> Questions = new ArrayList<String>(3);
+    List<String> Questions = new ArrayList<>(3);
     //Questions.add("What is one");
     //list of corresponding answers
-    List<String> Answers = new ArrayList<String>(3);
+    List<String> Answers = new ArrayList<>(3);
     LocalDateTime dueDate;
     Supplier<LocalDateTime> s;
     Instant begin;
@@ -105,7 +100,7 @@ public class NPC {
                 "You should already know that of course, and also that if you give three incorrect answers between the three questions you will fail the quiz, and that failing the exam traps you in the dungeon forever. \n" +
                 "Of course you knew all of that already, after all you did study right? I expect you should also know that the exam due date is " + dueDate.format(formatTime) + ", so you had best get to it.'");
 
-        long delay = 120000l;
+        long delay = 120000L;
         timer.schedule(time, delay);
         begin = Instant.now();
 
@@ -135,7 +130,7 @@ public class NPC {
         q3 = rad.nextInt(4);
         //check if the question was already taken, and loop through if needed
         while (q3 == q1 || q3 == q2) {
-            q3 = rad.nextInt(4); int q = 0;
+            q3 = rad.nextInt(4);
         }
 
 
@@ -157,7 +152,7 @@ public class NPC {
         //get user response
         String answer1 = scanner.nextLine();
         //if the user response is correct
-        if (answer1.toLowerCase().equals(Answers.get(q1).toLowerCase())) {
+        if (answer1.equalsIgnoreCase(Answers.get(q1))) {
             System.out.println("Silhouetted Man: 'Good answer, you might actually have a slight chance to escape.'");
             AskPlayerQuestion2();
         }
@@ -193,7 +188,7 @@ public class NPC {
         //get user response
         String answer2 = scanner.nextLine();
         //if the user response is correct
-        if (answer2.toLowerCase().equals(Answers.get(q2).toLowerCase())) {
+        if (answer2.equalsIgnoreCase(Answers.get(q2))) {
             System.out.println("Silhouetted Man: 'Another good answer. Maybe I will finally get to see what happens when somebody passes this quiz.'");
 
             AskPlayerQuestion3();
@@ -228,7 +223,7 @@ public class NPC {
         //get user response
         String answer3 = scanner.nextLine();
         //if the user response is correct
-        if (answer3.toLowerCase().equals(Answers.get(q3).toLowerCase())) {
+        if (answer3.equalsIgnoreCase(Answers.get(q3))) {
            Instant end = Instant.now();
            long elapsed = 60 - Duration.between(begin, end).toSeconds();
             System.out.println("Silhouetted Man: 'Well this is a first, three correct answers. You have passed the Final Exam, with "+ elapsed + " seconds to go, As such you can now leave the dungeon.'");

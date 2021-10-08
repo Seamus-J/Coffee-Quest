@@ -1,5 +1,13 @@
 package com.CoffeeQuest;
 
+import java.util.*;
+import java.util.ArrayList;
+import java.util.Locale;
+import java.util.Objects;
+import java.util.Scanner;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
+
 /** Represents a player.
  * @author Seamus J
  * @author Jared W
@@ -8,19 +16,6 @@ package com.CoffeeQuest;
  * @author alex
  * @since 1.0
  */
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.*;
-import java.util.ArrayList;
-import java.util.Locale;
-import java.util.Objects;
-import java.util.Scanner;
-import java.util.function.Predicate;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
-import java.util.stream.Stream;
-
 public class Player {
     // 2.2 --Example of encapsulation (1)--also note the public methods and use of get/set methods
     private Rooms room;

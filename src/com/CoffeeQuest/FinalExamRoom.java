@@ -8,9 +8,6 @@ import java.util.List;
  */
 public class FinalExamRoom extends Rooms
 {
-    // Name of the room
-    private final String name = "Final Exam Room";
-
     // A list of items in the room
     private List<Items> finalExamRoomItems;
 
@@ -19,7 +16,8 @@ public class FinalExamRoom extends Rooms
 
     @Override
     public String getName(){
-        return this.name;
+        // Name of the room
+        return "Final Exam Room";
     }
 
     @Override
@@ -58,13 +56,5 @@ public class FinalExamRoom extends Rooms
     @Override
     void IsCompletion(boolean b) {
         this.completion = b;
-    }
-
-    public List<Items> getFinalExamRoomItems() {
-        return finalExamRoomItems;
-    }
-
-    public void setFinalExamRoomItems(List<Items> finalExamRoomItems) {
-        this.finalExamRoomItems = finalExamRoomItems;
     }
 }

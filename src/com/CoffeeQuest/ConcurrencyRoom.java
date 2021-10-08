@@ -2,15 +2,12 @@ package com.CoffeeQuest;
 
 import java.util.List;
 
-/** Represents a the Concurrency Room.
+/** Represents the Concurrency Room.
  * @author Seamus Johnson
  * @since 1.0
  */
 public class ConcurrencyRoom extends Rooms
 {
-    // Name of the room
-    private final String name = "Concurrency Room";
-
     // A list of items in the room
     private List<Items> concurrencyItems;
 
@@ -19,7 +16,8 @@ public class ConcurrencyRoom extends Rooms
 
     @Override
     public String getName(){
-        return this.name;
+        // Name of the room
+        return "Concurrency Room";
     }
 
     @Override
