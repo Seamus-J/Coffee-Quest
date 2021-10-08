@@ -2,6 +2,8 @@ package com.CoffeeQuest;
 
 
 import java.io.Console;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -86,7 +88,7 @@ public class NPC {
      * class.
      */
     //Greet Player
-    public void GreetPlayer() {
+    public void GreetPlayer() throws IncorrectFileNameException {
         //Potential way to set a 'Due Date' for the quiz, this gets the localdatetime and sets the due date a minute after it
         // 4.2 Supplier example
         Supplier<LocalDateTime> s = LocalDateTime::now;
@@ -142,7 +144,7 @@ public class NPC {
      */
 
     //Ask Player Question1
-    public void AskPlayerQuestion1() {
+    public void AskPlayerQuestion1() throws IncorrectFileNameException {
         //prints the first question
         System.out.println("Silhouetted Man: 'Here is the first question. " + Questions.get(q1));
         System.out.println("What is your Answer:");
@@ -178,7 +180,7 @@ public class NPC {
      * essentially the same as AskPlayerQuestion1()
      */
     //Ask Player Question2
-    public void AskPlayerQuestion2() {
+    public void AskPlayerQuestion2() throws IncorrectFileNameException {
         //prints the second question
         System.out.println("Silhouetted Man: 'On too the second question then. " + Questions.get(q2));
         System.out.println("What is your Answer:");
@@ -213,7 +215,7 @@ public class NPC {
      * essentially the same as AskPlayerQuestion1(), accept that correctly answering in this method also calls the quizPass() method
      */
     //Ask Player Question3
-    public void AskPlayerQuestion3() {
+    public void AskPlayerQuestion3() throws IncorrectFileNameException {
         //prints the third question
         System.out.println("Silhouetted Man: 'Here's the final question, I hope your ready for it. " + Questions.get(q3) + "'");
         System.out.println("What is your Answer:");
@@ -262,12 +264,29 @@ public class NPC {
      * This method will set the FinalExamRoom.setCompletion value to true when called
      */
     //this method is called when the player has successfully completed the quiz
-    public void quizPass() {
-        System.out.println("You turn and notice a doorway in the wall, handily labeled exit and think 'I didn't see that there before? How did I miss it?' \n" +
-                "You step over to door and prepare to pass through it, but hesitate on the last step. You turn and consider the dungeon, thinking to \n" +
-                "yourself 'Have I truly learned everything I needed to? Am I prepared to go on?' With a final decision you turn back to the door and \n" +
-                "tell yourself 'Yes, yes I have.' With that final thought you step through the door and exit the dungeon.");
-        System.out.println("/////Congratulations you have Beaten the game 'CoffeeQuest' the Text Based Adventure. Thank you for playing./////");
+    public void quizPass() throws IncorrectFileNameException {
+
+        Scanner winMessage = null;
+        File file = new File("Congrats");
+
+        // 6.1, 6.2, 6.3, 6.4, 6.5, 8.1 examples
+        try{
+            winMessage = new Scanner(file);
+            while (winMessage.hasNext()){
+                System.out.println(winMessage.nextLine());
+            }
+        }
+         catch (FileNotFoundException e){
+            if (Objects.equals(file.getName(), "Congrats")){
+                assert winMessage == null : "Scanner is Null";
+                throw new IncorrectFileNameException("Incorrect File Name", e);
+            }
+            e.printStackTrace();
+        }finally {
+            if (scanner != null){
+                scanner.close();
+            }
+        }
 
         System.exit(0);
     }
