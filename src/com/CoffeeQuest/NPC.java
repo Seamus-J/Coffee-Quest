@@ -70,8 +70,12 @@ public class NPC {
         Questions.add("Yes or No: Will this code compile?: \n" + "\"int i;  while(i < 10) {i++;}'");
         Questions.add("What Java class might I use if I wanted to display your Exam's dueDate? \n" +
                       "A.LocalDate  B.LocalTime  C.LocalDateTime  D.TemporalUnit");
-
-
+        Questions.add("What is a correct syntax to output \"Hello World\" in Java?\n" +
+                "A.System.out.println(\"Hello World\");  B.echo(\"Hello World\");  C.print(\"Hello World\");  D.Console.WriteLine(\"Hello World\");");
+        Questions.add("Java is short for \"JavaScript\"" +
+                "True or false");
+        Questions.add("Which data type is used to create a variable that should store text?\n" +
+                "A.Txt  B.string  C.String  D.myString");
 
         //add in answers
         Answers.add("a");
@@ -79,6 +83,9 @@ public class NPC {
         //should be Reply.toLowerCase().equals(Answers.get(q1)
         Answers.add("no");
         //i isn't initialized
+        Answers.add("c");
+        Answers.add("a");
+        Answers.add("false");
         Answers.add("c");
     }
 
@@ -98,7 +105,7 @@ public class NPC {
         DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         System.out.println("Silhouetted Man: 'Confused? Didn't you remember you that you had a quiz today? Well, don't worry about it. It's really simple,just three short answers that you can even try to answer a second time if you get them wrong. \n" +
                 "You should already know that of course, and also that if you give three incorrect answers between the three questions you will fail the quiz, and that failing the exam traps you in the dungeon forever. \n" +
-                "Of course you knew all of that already, after all you did study right? I expect you should also know that the exam due date is " + dueDate.format(formatTime) + ", so you had best get to it.'");
+                "Of course you knew all of that already, after all you did study right? I expect you should also know that the exam due date is " + dueDate.format(formatTime) + ", so you had best get to it.'\n");
 
         long delay = 120000L;
         timer.schedule(time, delay);
@@ -121,16 +128,16 @@ public class NPC {
         //new random number generator
         Random rad = new Random();
         //determine first question number
-        q1 = rad.nextInt(4);
-        q2 = rad.nextInt(4);
+        q1 = rad.nextInt(7);
+        q2 = rad.nextInt(7);
         //check if the question was already taken, and loop through if needed
         while (q1 == q2) {
-            q2 = rad.nextInt(4);
+            q2 = rad.nextInt(7);
         }
-        q3 = rad.nextInt(4);
+        q3 = rad.nextInt(7);
         //check if the question was already taken, and loop through if needed
         while (q3 == q1 || q3 == q2) {
-            q3 = rad.nextInt(4);
+            q3 = rad.nextInt(7);
         }
 
 
@@ -182,7 +189,7 @@ public class NPC {
     //Ask Player Question2
     public void AskPlayerQuestion2() throws IncorrectFileNameException {
         //prints the second question
-        System.out.println("Silhouetted Man: 'On too the second question then. " + Questions.get(q2));
+        System.out.println("Silhouetted Man: 'On too the second question then.\n" + Questions.get(q2));
         System.out.println("What is your Answer:");
 
         //get user response
@@ -217,7 +224,7 @@ public class NPC {
     //Ask Player Question3
     public void AskPlayerQuestion3() throws IncorrectFileNameException {
         //prints the third question
-        System.out.println("Silhouetted Man: 'Here's the final question, I hope your ready for it. " + Questions.get(q3) + "'");
+        System.out.println("Silhouetted Man: 'Here's the final question, I hope your ready for it.\n" + Questions.get(q3) + "'");
         System.out.println("What is your Answer:");
 
         //get user response
@@ -262,7 +269,6 @@ public class NPC {
 
     /**
      * This method will set the FinalExamRoom.setCompletion value to true when called
-     * @throws IncorrectFileNameException
      */
     //this method is called when the player has successfully completed the quiz
     public void quizPass() throws IncorrectFileNameException {

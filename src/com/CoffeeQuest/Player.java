@@ -231,11 +231,17 @@ public class Player {
                 break;
 
         case "look":
-            System.out.println(room.getDescription());
-            roomInventory = this.room.getItems();
-            System.out.println("Objects in room: ");
-            // 2.1 lambda
-            roomInventory.forEach(x -> System.out.println(x));
+            if (!this.room.getName().equals("Final Exam Room")){
+                System.out.println(room.getDescription());
+                roomInventory = this.room.getItems();
+                System.out.println("Objects in room: ");
+                // 2.1 lambda
+                roomInventory.forEach(System.out::println);
+            }
+            else {
+                System.out.println(this.room.getDescription());
+                System.out.println("\n Should I talk to him?\n");
+            }
             break;
         case "pickup":
 
